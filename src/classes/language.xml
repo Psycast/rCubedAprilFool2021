@@ -1,0 +1,1543 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Game>
+	<Language index="1" id="us" en_name="English" real_name="English" last_update="1615601480">
+		<Message id="login_name">
+			<text>Username:</text>
+		</Message>
+		<Message id="login_pass">
+			<text>Password:</text>
+		</Message>
+		<Message id="login_guest">
+			<text>GUEST</text>
+		</Message>
+		<Message id="login_text">
+			<text>LOGIN</text>
+		</Message>
+		<Message id="login_remember">
+			<text>Remember Me</text>
+		</Message>
+		<Message id="login_status_waiting">
+			<text>Logging in...</text>
+		</Message>
+		<Message id="login_status_failure">
+			<text>Login Failed.</text>
+		</Message>
+		<Message id="menu_play">
+			<text>PLAY</text>
+		</Message>
+		<Message id="menu_multiplayer">
+			<text>MULTIPLAYER</text>
+		</Message>
+		<Message id="menu_stats">
+			<text>STATS</text>
+		</Message>
+		<Message id="menu_options">
+			<text>OPTIONS</text>
+		</Message>
+		<Message id="menu_news">
+			<text>NEWS</text>
+		</Message>
+		<Message id="menu_friends">
+			<text>FRIENDS</text>
+		</Message>
+		<Message id="menu_close">
+			<text>CLOSE</text>
+		</Message>
+		<Message id="song_selection_menu_search">
+			<text>SEARCH</text>
+		</Message>
+		<Message id="song_selection_filters">
+			<text>FILTERS</text>
+		</Message>
+		<Message id="song_selection_search">
+			<text>QUEUE</text>
+		</Message>
+		<Message id="song_selection_banned_credits">
+			<text>You need %(more_needed)s more credits to play this song. (%(user_credits)s/%(song_price)s)</text>
+		</Message>
+		<Message id="song_selection_banned_purchased">
+			<text>Purchase Song from the shop for %(song_price)s credits.</text>
+		</Message>
+		<Message id="song_selection_banned_invalid">
+			<text>The level ID for this level is not a number, preventing play.</text>
+		</Message>
+		<Message id="genre_-1">
+			<text>All</text>
+		</Message>
+		<Message id="genre_0">
+			<text>Dance</text>
+		</Message>
+		<Message id="genre_1">
+			<text>Dance &lt;font color="#00DBFF"&gt;2&lt;/font&gt;</text>
+		</Message>
+		<Message id="genre_2">
+			<text>Funk</text>
+		</Message>
+		<Message id="genre_3">
+			<text>Arcade</text>
+		</Message>
+		<Message id="genre_4">
+			<text>Rock</text>
+		</Message>
+		<Message id="genre_5">
+			<text>Classical</text>
+		</Message>
+		<Message id="genre_6">
+			<text>Misc</text>
+		</Message>
+		<Message id="genre_7">
+			<text>Secret</text>
+		</Message>
+		<Message id="genre_8">
+			<text>&lt;font color="#AEFF9C"&gt;Purchased&lt;/font&gt;</text>
+		</Message>
+		<Message id="genre_9">
+			<text>Token</text>
+		</Message>
+		<Message id="genre_10">
+			<text>Hip-Hop</text>
+		</Message>
+		<Message id="genre_11">
+			<text>Skill Token</text>
+		</Message>
+		<Message id="genre_12">
+			<text>Legacy</text>
+		</Message>
+		<Message id="genre_13">
+			<text>&lt;font color=&quot;#942519&quot;&gt;Disabled&lt;/font&gt;</text>
+		</Message>
+		<Message id="difficulty_1">
+			<text>Easiest</text>
+		</Message>
+		<Message id="difficulty_2">
+			<text>Beginner</text>
+		</Message>
+		<Message id="difficulty_3">
+			<text>Novice</text>
+		</Message>
+		<Message id="difficulty_4">
+			<text>Very Easy</text>
+		</Message>
+		<Message id="difficulty_5">
+			<text>Easy</text>
+		</Message>
+		<Message id="difficulty_6">
+			<text>Light</text>
+		</Message>
+		<Message id="difficulty_7">
+			<text>Moderate</text>
+		</Message>
+		<Message id="difficulty_8">
+			<text>Standard</text>
+		</Message>
+		<Message id="difficulty_9">
+			<text>Tricky</text>
+		</Message>
+		<Message id="difficulty_10">
+			<text>Very Tricky</text>
+		</Message>
+		<Message id="difficulty_11">
+			<text>Difficult</text>
+		</Message>
+		<Message id="difficulty_12">
+			<text>Very Difficult</text>
+		</Message>
+		<Message id="difficulty_13">
+			<text>Challenging</text>
+		</Message>
+		<Message id="difficulty_14">
+			<text>Very Challenging</text>
+		</Message>
+		<Message id="difficulty_15">
+			<text>Expert</text>
+		</Message>
+		<Message id="difficulty_16">
+			<text>Master</text>
+		</Message>
+		<Message id="difficulty_17">
+			<text>Guru</text>
+		</Message>
+		<Message id="difficulty_18">
+			<text>Brutal</text>
+		</Message>
+		<Message id="difficulty_19">
+			<text>Ridiculous</text>
+		</Message>
+		<Message id="difficulty_20">
+			<text>???</text>
+		</Message>
+		<Message id="options_speed">
+			<text>Scroll Speed:</text>
+		</Message>
+		<Message id="options_scroll">
+			<text>Scroll Direction:</text>
+		</Message>
+		<Message id="options_scroll_up">
+			<text>Up</text>
+		</Message>
+		<Message id="options_scroll_down">
+			<text>Down</text>
+		</Message>
+		<Message id="options_scroll_left">
+			<text>Left</text>
+		</Message>
+		<Message id="options_scroll_right">
+			<text>Right</text>
+		</Message>
+		<Message id="options_scroll_split">
+			<text>Split</text>
+		</Message>
+		<Message id="options_scroll_split_down">
+			<text>Split - Alt</text>
+		</Message>
+		<Message id="options_scroll_plus">
+			<text>Plus</text>
+		</Message>
+		<Message id="options_keys">
+			<text>Keys:</text>
+		</Message>
+		<Message id="options_key_pick">
+			<text>&amp;lt;PICK&amp;gt;</text>
+		</Message>
+		<Message id="options_scroll_restart">
+			<text>Restart</text>
+		</Message>
+		<Message id="options_scroll_quit">
+			<text>Quit</text>
+		</Message>
+		<Message id="options_scroll_options">
+			<text>Options</text>
+		</Message>
+		<Message id="options_receptor_spacing">
+			<text>Receptor Spacing:</text>
+		</Message>
+		<Message id="options_autofail">
+			<text>Auto Fail:</text>
+		</Message>
+		<Message id="options_quality">
+			<text>Game Quality:</text>
+		</Message>
+		<Message id="options_global_offset">
+			<text>Global Offset:</text>
+		</Message>
+		<Message id="options_judge_offset">
+			<text>Judge Offset:</text>
+		</Message>
+		<Message id="options_isolation_start">
+			<text>Isolation Start:</text>
+		</Message>
+		<Message id="options_isolation_notes">
+			<text>Isolation Notes:</text>
+		</Message>
+		<Message id="options_volume">
+			<text>Game Volume:</text>
+		</Message>
+		<Message id="options_visual_mods">
+			<text>Game Visual Mods:</text>
+		</Message>
+		<Message id="options_mod_mirror">
+			<text>Mirror</text>
+		</Message>
+		<Message id="options_mod_dark">
+			<text>Dark</text>
+		</Message>
+		<Message id="options_mod_nobackground">
+			<text>No Background</text>
+		</Message>
+		<Message id="options_mod_columncolour">
+			<text>Column Colors</text>
+		</Message>
+		<Message id="options_game_mods">
+			<text>Game Mods:</text>
+		</Message>
+		<Message id="options_mod_hidden">
+			<text>Hidden</text>
+		</Message>
+		<Message id="options_mod_random">
+			<text>Random</text>
+		</Message>
+		<Message id="options_mod_scramble">
+			<text>Scramble</text>
+		</Message>
+		<Message id="options_mod_shuffle">
+			<text>Shuffle</text>
+		</Message>
+		<Message id="options_display">
+			<text>Display:</text>
+		</Message>
+		<Message id="options_screen_cut">
+			<text>Show Screen Cut</text>
+		</Message>
+		<Message id="options_combo">
+			<text>Show Combo</text>
+		</Message>
+		<Message id="options_total">
+			<text>Show Total Notes</text>
+		</Message>
+		<Message id="options_health">
+			<text>Show Health</text>
+		</Message>
+		<Message id="options_judge">
+			<text>Show Judge Accuracy</text>
+		</Message>
+		<Message id="options_pacount">
+			<text>Show PA Count</text>
+		</Message>
+		<Message id="options_amazing">
+			<text>Show "Amazing" Accuracy</text>
+		</Message>
+		<Message id="options_quality_high">
+			<text>High</text>
+		</Message>
+		<Message id="options_quality_medium">
+			<text>Medium</text>
+		</Message>
+		<Message id="options_quality_low">
+			<text>Low</text>
+		</Message>
+		<Message id="options_noteskin">
+			<text>NoteSkin:</text>
+		</Message>
+		<Message id="options_editor_mode">
+			<text>Editor Mode</text>
+		</Message>
+		<Message id="game_amazing">
+			<text>Amazing</text>
+		</Message>
+		<Message id="game_perfect">
+			<text>Perfect</text>
+		</Message>
+		<Message id="game_good">
+			<text>Good</text>
+		</Message>
+		<Message id="game_average">
+			<text>Average</text>
+		</Message>
+		<Message id="game_miss">
+			<text>Miss</text>
+		</Message>
+		<Message id="game_boo">
+			<text>Boo</text>
+		</Message>
+		<Message id="game_combo">
+			<text>Combo</text>
+		</Message>
+		<Message id="game_max_combo">
+			<text>Max Combo</text>
+		</Message>
+		<Message id="game_score">
+			<text>Score</text>
+		</Message>
+		<Message id="game_total_notes">
+			<text>Total</text>
+		</Message>
+		<Message id="results_rank">
+			<text>Rank</text>
+		</Message>
+		<Message id="results_best_rank">
+			<text>Best Rank</text>
+		</Message>
+		<Message id="results_grade">
+			<text>Grade</text>
+		</Message>
+		<Message id="results_replay">
+			<text>Replay</text>
+		</Message>
+		<Message id="results_play_again">
+			<text>Play Again</text>
+		</Message>
+		<Message id="menu_reset">
+			<text>Reset</text>
+		</Message>
+		<Message id="menu_editor">
+			<text>Editor</text>
+		</Message>
+		<Message id="options_screencut">
+			<text>Show ScreenCut</text>
+		</Message>
+		<Message id="song_selection_banned_veteran">
+			<text>This song is only available to Veterans for the time being.</text>
+		</Message>
+		<Message id="popup_help_title">
+			<text>Help</text>
+		</Message>
+		<Message id="popup_help_text">
+			<text>Flash Flash Revolution (or FFR) is a music-based rhythm game that runs through Adobe Flash and an Internet browser, making it a full-fledged online music title that requires no downloads or fees to play. Players can choose from hundreds of songs from a number of genres produced by popular signed and independent artists. Each game level has a corresponding pattern of arrows that corresponds to the current song being played. The pattern of arrows scrolls from the bottom of the play field and players must hit the corresponding arrow when it meets the stationary arrows located at the top of the play field.
+
+With proper timing, players earn points and keep a performance meter filled and aim to not let the meter empty before the song ends. If a player allows the meter to completely empty, through missed key entries, the game ends.
+
+If you've ever played a game like Dance Dance Revolution, Guitar Hero, Beatmania, or In The Groove, you should feel right at home here.
+
+&amp;gt; &lt;a href=&quot;http://www.flashflashrevolution.com/vbz/showthread.php?t=115282&quot;&gt;Picture Dictionary&lt;/a&gt;
+
+&amp;gt; &lt;a href=&quot;http://www.flashflashrevolution.com/vbz/showthread.php?t=120256&quot;&gt;Standalone Guide&lt;/a&gt;
+
+&amp;gt; &lt;a href=&quot;https://www.youtube.com/watch?v=lrd6ZfPoihA&quot;&gt;Multiplayer Tutorial&lt;/a&gt;</text>
+		</Message>
+		<Message id="options_mp_mask">
+			<text>Hide Multiplayer Judge</text>
+		</Message>
+		<Message id="options_mp_timestamp">
+			<text>Show Timestamp</text>
+		</Message>
+		<Message id="options_mp_textsize">
+			<text>Multiplayer Text Size:</text>
+		</Message>
+		<Message id="options_game_engine">
+			<text>Engine Playlist:</text>
+		</Message>
+		<Message id="options_framerate">
+			<text>Framerate:</text>
+		</Message>
+		<Message id="options_rate">
+			<text>Song Rate:</text>
+		</Message>
+		<Message id="options_menu_main">
+			<text>Main</text>
+		</Message>
+		<Message id="options_menu_visual_mods">
+			<text>Visual &amp; Game Modifiers</text>
+		</Message>
+		<Message id="options_menu_other">
+			<text>Other Options</text>
+		</Message>
+		<Message id="options_autofail">
+			<text>Autofail:</text>
+		</Message>
+		<Message id="menu_editor_mp">
+			<text>Multiplayer Editor</text>
+		</Message>
+		<Message id="menu_editor_mp_spec">
+			<text>Spectator Editor</text>
+		</Message>
+		<Message id="options_mod_reverse">
+			<text>Reverse</text>
+		</Message>
+		<Message id="options_warning_save">
+			<text>Score saving disabled due to mods</text>
+		</Message>
+		<Message id="game_combo">
+			<text>combo</text>
+		</Message>
+		<Message id="game_combo_total">
+			<text>total</text>
+		</Message>
+		<Message id="popup_replay_history">
+			<text>Recent Game Replays</text>
+		</Message>
+		<Message id="results_replay_modified">
+			<text>Replay Modified</text>
+		</Message>
+		<Message id="options_queue_saved">
+			<text>Saved Queues</text>
+		</Message>
+		<Message id="options_queue_premade">
+			<text>Premade Queues</text>
+		</Message>
+		<Message id="popup_queue_manager">
+			<text>Queue Manager</text>
+		</Message>
+		<Message id="popup_queue_no_queues">
+			<text>No saved song queues.</text>
+		</Message>
+		<Message id="options_menu_game_colors">
+			<text>Game &amp; Text Colors</text>
+		</Message>
+		<Message id="options_mod_rotate">
+			<text>Rotate</text>
+		</Message>
+		<Message id="options_songprogress">
+			<text>Show Song Progress Bar</text>
+		</Message>
+		<Message id="options_song_flag">
+			<text>Show Playlist Song Score Icons</text>
+		</Message>
+		<Message id="options_perfect">
+			<text>Show &quot;Perfect&quot; Accuracy</text>
+		</Message>
+		<Message id="popup_token_unlock">
+			<text>- Token Unlock! -</text>
+		</Message>
+		<Message id="options_f10_required">
+			<text>Flash 10 required.</text>
+		</Message>
+		<Message id="options_game_language">
+			<text>Game Language:</text>
+		</Message>
+		<Message id="song_selection_search_panel_search">
+			<text>SEARCH</text>
+		</Message>
+		<Message id="song_selection_filter_panel_title">
+			<text>Filters</text>
+		</Message>
+		<Message id="song_selection_filter_panel_difficulty_level">
+			<text>Difficulty Level:</text>
+		</Message>
+		<Message id="song_selection_filter_panel_filter">
+			<text>FILTER</text>
+		</Message>
+		<Message id="song_selection_filter_panel_random">
+			<text>RANDOM SONG</text>
+		</Message>
+		<Message id="song_selection_queue_panel_title">
+			<text>Song Queue</text>
+		</Message>
+		<Message id="song_selection_queue_panel_total_songs">
+			<text>Total Songs:</text>
+		</Message>
+		<Message id="song_selection_queue_panel_total_length">
+			<text>Total Length:</text>
+		</Message>
+		<Message id="song_selection_queue_panel_play">
+			<text>PLAY</text>
+		</Message>
+		<Message id="song_selection_queue_panel_randomize">
+			<text>RANDOMIZE</text>
+		</Message>
+		<Message id="song_selection_queue_panel_manager">
+			<text>MANAGER</text>
+		</Message>
+		<Message id="song_selection_queue_panel_save">
+			<text>SAVE</text>
+		</Message>
+		<Message id="song_selection_queue_panel_clear">
+			<text>CLEAR</text>
+		</Message>
+		<Message id="song_selection_song_panel_song">
+			<text>Song:</text>
+		</Message>
+		<Message id="song_selection_song_panel_author">
+			<text>Author:</text>
+		</Message>
+		<Message id="song_selection_song_panel_stepfile">
+			<text>Stepfile by:</text>
+		</Message>
+		<Message id="song_selection_song_panel_length">
+			<text>Length:</text>
+		</Message>
+		<Message id="song_selection_song_panel_style">
+			<text>Style:</text>
+		</Message>
+		<Message id="song_selection_song_panel_best">
+			<text>Best:</text>
+		</Message>
+		<Message id="song_selection_song_panel_unplayed">
+			<text>Unplayed</text>
+		</Message>
+		<Message id="song_selection_song_panel_queue">
+			<text>QUEUE</text>
+		</Message>
+		<Message id="song_selection_song_panel_info">
+			<text>INFO</text>
+		</Message>
+		<Message id="song_selection_song_panel_scores">
+			<text>SCORES</text>
+		</Message>
+		<Message id="song_selection_song_panel_play">
+			<text>PLAY</text>
+		</Message>
+		<Message id="song_selection_song_panel_mp_load">
+			<text>MP LOAD</text>
+		</Message>
+		<Message id="song_selection_song_panel_highscores">
+			<text>Highscores:</text>
+		</Message>
+		<Message id="song_selection_add_to_queue">
+			<text>&quot;%(song_name)s&quot; added to queue</text>
+		</Message>
+		<Message id="main_menu_userbar">
+			<text>PLAYER: %(player_name)s      GAMES: %(games_played)s      TOTAL: %(grand_total)s      RANK: %(rank)s      AVG: %(avg_rank)s</text>
+		</Message>
+		<Message id="options_mod_halftime">
+			<text>Halved Noteskin</text>
+		</Message>
+		<Message id="dummy_test2">
+			<text>test</text>
+		</Message>
+		<Message id="options_mod_mini">
+			<text>Mini Notes</text>
+		</Message>
+		<Message id="options_mod_sudden">
+			<text>Sudden</text>
+		</Message>
+		<Message id="options_mod_wave">
+			<text>Wave</text>
+		</Message>
+		<Message id="options_mod_drunk">
+			<text>Drunk</text>
+		</Message>
+		<Message id="options_mod_tornado">
+			<text>Tornado</text>
+		</Message>
+		<Message id="options_mod_mini_resize">
+			<text>Mini [Resize]</text>
+		</Message>
+		<Message id="options_mod_blink">
+			<text>Blink</text>
+		</Message>
+		<Message id="filter_compare_string_equal">
+			<text>Equal</text>
+		</Message>
+		<Message id="filter_compare_string_start_with">
+			<text>Start With</text>
+		</Message>
+		<Message id="filter_compare_string_end_with">
+			<text>End With</text>
+		</Message>
+		<Message id="filter_compare_string_contains">
+			<text>Contains</text>
+		</Message>
+		<Message id="filter_compare_stat_amazing">
+			<text>Amazing</text>
+		</Message>
+		<Message id="filter_compare_stat_perfect">
+			<text>Perfect</text>
+		</Message>
+		<Message id="filter_compare_stat_average">
+			<text>Average</text>
+		</Message>
+		<Message id="filter_compare_stat_miss">
+			<text>Miss</text>
+		</Message>
+		<Message id="filter_compare_stat_boo">
+			<text>Boo</text>
+		</Message>
+		<Message id="filter_compare_stat_combo">
+			<text>Combo</text>
+		</Message>
+		<Message id="filter_type_and">
+			<text>AND</text>
+		</Message>
+		<Message id="filter_type_or">
+			<text>OR</text>
+		</Message>
+		<Message id="filter_type_style">
+			<text>Style</text>
+		</Message>
+		<Message id="filter_type_name">
+			<text>Name</text>
+		</Message>
+		<Message id="filter_type_artist">
+			<text>Artist</text>
+		</Message>
+		<Message id="filter_type_stepartist">
+			<text>Step Artist</text>
+		</Message>
+		<Message id="filter_type_bpm">
+			<text>BPM</text>
+		</Message>
+		<Message id="filter_type_difficulty">
+			<text>Difficulty</text>
+		</Message>
+		<Message id="filter_type_arrows">
+			<text>Arrow Count</text>
+		</Message>
+		<Message id="filter_type_id">
+			<text>ID</text>
+		</Message>
+		<Message id="filter_type_min_nps">
+			<text>Min NPS</text>
+		</Message>
+		<Message id="filter_type_max_nps">
+			<text>Max NPS</text>
+		</Message>
+		<Message id="filter_type_rank">
+			<text>Rank</text>
+		</Message>
+		<Message id="filter_type_score">
+			<text>Score</text>
+		</Message>
+		<Message id="filter_type_stats">
+			<text>Stats</text>
+		</Message>
+		<Message id="filter_type_time">
+			<text>Time</text>
+		</Message>
+		<Message id="filter_editor_add_filter">
+			<text>Add Filter Type:</text>
+		</Message>
+		<Message id="filter_editor_select_edit">
+			<text>Select / Edit</text>
+		</Message>
+		<Message id="filter_editor_delete">
+			<text>Delete</text>
+		</Message>
+		<Message id="filter_editor_comparison">
+			<text>Comparison:</text>
+		</Message>
+		<Message id="filter_editor_stat_comparison">
+			<text>Select Stat for Comparison:</text>
+		</Message>
+		<Message id="song_value_name">
+			<text>Song Name</text>
+		</Message>
+		<Message id="song_value_author">
+			<text>Author</text>
+		</Message>
+		<Message id="song_value_stepauthor">
+			<text>StepAuthor</text>
+		</Message>
+		<Message id="song_value_style">
+			<text>Style</text>
+		</Message>
+		<Message id="song_selection_menu_search_type">
+			<text>Search Type</text>
+		</Message>
+		<Message id="options_force_judge_mode">
+			<text>Force New Judge Mode</text>
+		</Message>
+		<Message id="options_mod_tap_pulse">
+			<text>Reactive Tapping</text>
+		</Message>
+		<Message id="options_score">
+			<text>Show Score</text>
+		</Message>
+		<Message id="options_game_top_bar">
+			<text>Show Game Top Bar</text>
+		</Message>
+		<Message id="options_game_bottom_bar">
+			<text>Show Game Bottom Bar</text>
+		</Message>
+		<Message id="menu_confirm">
+			<text>CONFIRM</text>
+		</Message>
+		<Message id="song_rating_title">
+			<text>- Song Rating -</text>
+		</Message>
+		<Message id="song_rating_label">
+			<text>Song Rating:</text>
+		</Message>
+		<Message id="song_chart_rating_label">
+			<text>Chart Rating:</text>
+		</Message>
+		<Message id="filter_type_combo_score">
+			<text>Combo Score</text>
+		</Message>
+		<Message id="filter_type_song_rating">
+			<text>Song Rating</text>
+		</Message>
+		<Message id="filter_type_personal_rating">
+			<text>Personal Rating</text>
+		</Message>
+		<Message id="filter_type_song_flags">
+			<text>Song Flags</text>
+		</Message>
+		<Message id="filter_compare_flags_equal">
+			<text>Equals</text>
+		</Message>
+		<Message id="filter_compare_flags_contains">
+			<text>Contains</text>
+		</Message>
+		<Message id="filter_compare_flags_not_equal">
+			<text>Not Equals</text>
+		</Message>
+		<Message id="filter_compare_flags_not_contains">
+			<text>Doesn't Contain</text>
+		</Message>
+		<Message id="filter_compare_stat_good">
+			<text>Good</text>
+		</Message>
+		<Message id="song_selection_filter_panel_manager">
+			<text>FILTER MANAGER</text>
+		</Message>
+		<Message id="options_combo_colors_0">
+			<text>Normal</text>
+		</Message>
+		<Message id="options_combo_colors_1">
+			<text>Full Combo</text>
+		</Message>
+		<Message id="options_combo_colors_2">
+			<text>AAA</text>
+		</Message>
+		<Message id="options_game_colors_0">
+			<text>Light</text>
+		</Message>
+		<Message id="options_game_colors_1">
+			<text>Dark</text>
+		</Message>
+		<Message id="options_game_colors_2">
+			<text>Static</text>
+		</Message>
+		<Message id="options_game_colors_3">
+			<text>Popups</text>
+		</Message>
+		<Message id="options_game_colors_title">
+			<text>Game Background Colors</text>
+		</Message>
+		<Message id="options_combo_colors_title">
+			<text>Combo Colors</text>
+		</Message>
+		<Message id="options_judge_colors_title">
+			<text>Judge Colors</text>
+		</Message>
+		<Message id="options_mod_rotating">
+			<text>Rotating</text>
+		</Message>
+		<Message id="options_mod_rotate_cw">
+			<text>Rotate CW</text>
+		</Message>
+		<Message id="options_mod_rotate_ccw">
+			<text>Rotate CCW</text>
+		</Message>
+		<Message id="genre_mode_0">
+			<text>Genres</text>
+		</Message>
+		<Message id="genre_mode_1">
+			<text>Difficulties</text>
+		</Message>
+		<Message id="genre_mode_2">
+			<text>Song Flags</text>
+		</Message>
+		<Message id="difficulty_title_0">
+			<text>Easiest</text>
+		</Message>
+		<Message id="difficulty_title_1">
+			<text>Beginner</text>
+		</Message>
+		<Message id="difficulty_title_2">
+			<text>Very Easy</text>
+		</Message>
+		<Message id="difficulty_title_3">
+			<text>Easy</text>
+		</Message>
+		<Message id="difficulty_title_4">
+			<text>Standard</text>
+		</Message>
+		<Message id="difficulty_title_5">
+			<text>Tricky</text>
+		</Message>
+		<Message id="difficulty_title_7">
+			<text>Very Difficult</text>
+		</Message>
+		<Message id="difficulty_title_8">
+			<text>Challenging</text>
+		</Message>
+		<Message id="difficulty_title_9">
+			<text>Very Challenging</text>
+		</Message>
+		<Message id="difficulty_title_10">
+			<text>Master</text>
+		</Message>
+		<Message id="difficulty_title_11">
+			<text>Guru</text>
+		</Message>
+		<Message id="difficulty_title_12">
+			<text>Brutal</text>
+		</Message>
+		<Message id="difficulty_title_13">
+			<text>&lt;font color=&quot;#FFE293&quot;&gt;¯\_(ツ)_/¯&lt;/font&gt;</text>
+		</Message>
+		<Message id="difficulty_title_6">
+			<text>Difficult</text>
+		</Message>
+		<Message id="menu_filters">
+			<text>FILTERS</text>
+		</Message>
+		<Message id="note_colors_red">
+			<text>Red</text>
+		</Message>
+		<Message id="note_colors_blue">
+			<text>Blue</text>
+		</Message>
+		<Message id="note_colors_purple">
+			<text>Purple</text>
+		</Message>
+		<Message id="note_colors_yellow">
+			<text>Yellow</text>
+		</Message>
+		<Message id="note_colors_pink">
+			<text>Pink</text>
+		</Message>
+		<Message id="note_colors_orange">
+			<text>Orange</text>
+		</Message>
+		<Message id="note_colors_cyan">
+			<text>Cyan</text>
+		</Message>
+		<Message id="note_colors_green">
+			<text>Green</text>
+		</Message>
+		<Message id="note_colors_white">
+			<text>White</text>
+		</Message>
+		<Message id="options_note_colors_title">
+			<text>Note Colors</text>
+		</Message>
+		<Message id="filter_type_song_access">
+			<text>Song Access</text>
+		</Message>
+		<Message id="filter_setting_playable">
+			<text>Playable</text>
+		</Message>
+		<Message id="filter_type_song_type">
+			<text>Song Type</text>
+		</Message>
+		<Message id="filter_compare_boolean_is">
+			<text>Is</text>
+		</Message>
+		<Message id="filter_compare_boolean_isnt">
+			<text>Isn't</text>
+		</Message>
+		<Message id="filter_compare_types_public">
+			<text>Public</text>
+		</Message>
+		<Message id="filter_compare_types_token">
+			<text>Token</text>
+		</Message>
+		<Message id="filter_compare_types_purchased">
+			<text>Purchased</text>
+		</Message>
+		<Message id="filter_compare_types_secret">
+			<text>Secret</text>
+		</Message>
+		<Message id="air_options_cache_select">
+			<text>Select Cache Location:</text>
+		</Message>
+		<Message id="air_options_use_cache">
+			<text>Use Local File Caching</text>
+		</Message>
+		<Message id="select">
+			<text>SELECT</text>
+		</Message>
+		<Message id="air_options_save_local_replays">
+			<text>Auto-Save Replays Locally</text>
+		</Message>
+		<Message id="air_options_menu_volume">
+			<text>Menu Music Volume:</text>
+		</Message>
+		<Message id="options_default_game_engine">
+			<text>Default Engine Playlist:</text>
+		</Message>
+		<Message id="filter_type_song_genre">
+			<text>Genre</text>
+		</Message>
+		<Message id="popup_close">
+			<text>Close</text>
+		</Message>
+		<Message id="popup_filter_saved_filters">
+			<text>Saved Filters</text>
+		</Message>
+		<Message id="popup_filter_clear_filter">
+			<text>Clear Filter</text>
+		</Message>
+		<Message id="popup_filter_add_filter">
+			<text>Add Filter</text>
+		</Message>
+		<Message id="popup_filter_active_filter">
+			<text>Active Filter</text>
+		</Message>
+		<Message id="popup_filter_no_active_filter">
+			<text>No Filter Active</text>
+		</Message>
+		<Message id="popup_filter_default_filter">
+			<text>Set as Default Filter</text>
+		</Message>
+		<Message id="popup_noteskin_import_image">
+			<text>Import Image</text>
+		</Message>
+		<Message id="popup_noteskin_import_json">
+			<text>Import JSON</text>
+		</Message>
+		<Message id="popup_noteskin_grid_rotation">
+			<text>Grid &amp; Rotation:</text>
+		</Message>
+		<Message id="note_colors_receptor">
+			<text>Receptor</text>
+		</Message>
+		<Message id="menu_save">
+			<text>SAVE</text>
+		</Message>
+		<Message id="air_game_update">
+			<text>FFR R^3 Engine Update</text>
+		</Message>
+		<Message id="air_start_update">
+			<text>Start Update</text>
+		</Message>
+		<Message id="air_update_fail">
+			<text>Did previous update fail?</text>
+		</Message>
+		<Message id="air_update_pre_message">
+			<text>Retrieving game update information...</text>
+		</Message>
+		<Message id="air_start_update_2">
+			<text>Restart R^3 to Continue</text>
+		</Message>
+		<Message id="air_process_update">
+			<text>Processing Update...</text>
+		</Message>
+		<Message id="air_update_no_changelog">
+			<text>No Change Log found.</text>
+		</Message>
+		<Message id="air_update_download_error">
+			<text>&lt;B&gt;&lt;FONT COLOR=&quot;#ffa0a0&quot;&gt;Failed to get update file.&lt;/FONT&gt;&lt;/B&gt;</text>
+		</Message>
+		<Message id="air_manual_restart">
+			<text>Update Complete!
+
+Please restart the game through the normal method.</text>
+		</Message>
+		<Message id="air_update_missing">
+			<text>Update File went missing...</text>
+		</Message>
+		<Message id="air_file_success">
+			<text>SUCCESS</text>
+		</Message>
+		<Message id="air_file_failure">
+			<text>FAILURE</text>
+		</Message>
+		<Message id="air_update_fail_multiple">
+			<text>Update has failed multiple times, a re-download of the game may be required.</text>
+		</Message>
+		<Message id="air_count_files_success">
+			<text>Updated %(count)s files.</text>
+		</Message>
+		<Message id="air_count_files_failure">
+			<text>Failed to updated %(count)s files.</text>
+		</Message>
+		<Message id="air_count_files_error">
+			<text>%(count)s files have failed to update, this may cause issues.</text>
+		</Message>
+		<Message id="options_noteskin_custom">
+			<text>Custom</text>
+		</Message>
+		<Message id="options_noteskins_edit_custom">
+			<text>Edit Custom Noteskin</text>
+		</Message>
+		<Message id="clipboard_success">
+			<text>Copied to Clipboard</text>
+		</Message>
+		<Message id="clipboard_failure">
+			<text>Failed copying to Clipboard</text>
+		</Message>
+		<Message id="popup_noteskin_saved">
+			<text>Noteskin Saved to Custom Slot</text>
+		</Message>
+		<Message id="menu_copy_to_clipboard">
+			<text>Copy to Clipboard</text>
+		</Message>
+		<Message id="popup_filter_filter_single_export">
+			<text>Export Filter</text>
+		</Message>
+		<Message id="popup_filter_filter_single_import">
+			<text>Import Filter</text>
+		</Message>
+		<Message id="popup_options_import">
+			<text>Import Player Options</text>
+		</Message>
+		<Message id="popup_options_export">
+			<text>Export Player Options</text>
+		</Message>
+		<Message id="options_auto_judge_offset">
+			<text>Auto</text>
+		</Message>
+		<Message id="popup_auto_judge_offset">
+			<text>Auto-Calibrate when exiting a song with at least 50 notes hit.</text>
+		</Message>
+		<Message id="options_mod_hide">
+			<text>Hide Receptors</text>
+		</Message>
+		<Message id="options_note_scale">
+			<text>Note Scale:</text>
+		</Message>
+		<Message id="options_include_legacy_songs">
+			<text>Display Legacy Songs</text>
+		</Message>
+		<Message id="popup_legacy_songs">
+			<text>Displays very old songs that no longer meet the standards of today's files, but still remains as part of our history.</text>
+		</Message>
+		<Message id="game_results_total_songs">
+			<text>Total of %(total)s songs.</text>
+		</Message>
+		<Message id="game_results_queue_save_screenshot">
+			<text>Screenshot</text>
+		</Message>
+		<Message id="game_results_queue_save_replay">
+			<text>Save Replay</text>
+		</Message>
+		<Message id="game_results_queue_next">
+			<text>NEXT</text>
+		</Message>
+		<Message id="game_results_queue_previous">
+			<text>PREVIOUS</text>
+		</Message>
+		<Message id="game_results_queue_total">
+			<text>TOTALS</text>
+		</Message>
+		<Message id="game_results_menu_options">
+			<text>OPTIONS</text>
+		</Message>
+		<Message id="game_results_menu_highscores">
+			<text>HIGHSCORES</text>
+		</Message>
+		<Message id="game_results_menu_replay_song">
+			<text>REPLAY SONG</text>
+		</Message>
+		<Message id="game_results_menu_exit_menu">
+			<text>EXIT TO MENU</text>
+		</Message>
+		<Message id="game_results_subtitle_difficulty">
+			<text>Difficulty: %(value)s</text>
+		</Message>
+		<Message id="game_results_subtitle_length">
+			<text>Length: %(value)s</text>
+		</Message>
+		<Message id="game_results_subtitle_author">
+			<text>Artist: %(value)s</text>
+		</Message>
+		<Message id="game_results_subtitle_stepauthor">
+			<text>Stepfile by: %(value)s</text>
+		</Message>
+		<Message id="air_unpack_error">
+			<text>An error occurred unpacking the game update, please restart the game and retry the update.</text>
+		</Message>
+		<Message id="air_update_unpacking">
+			<text>Unpacking...</text>
+		</Message>
+		<Message id="air_options_use_vsync">
+			<text>VSync</text>
+		</Message>
+		<Message id="register_text">
+			<text>CREATE ACCOUNT</text>
+		</Message>
+		<Message id="popup_vsync">
+			<text>Framerate will synchronize with monitor refresh rate.</text>
+		</Message>
+		<Message id="login_change_user">
+			<text>CHANGE USER</text>
+		</Message>
+		<Message id="login_continue_as">
+			<text>Continue as:</text>
+		</Message>
+		<Message id="login_invalid_session">
+			<text>Expire session, please re-login to continue.</text>
+		</Message>
+		<Message id="menu_tokens">
+			<text>TOKENS</text>
+		</Message>
+		<Message id="genre_mode_3">
+			<text>Completionist</text>
+		</Message>
+		<Message id="genre_completionist_0">
+			<text>Average Rank Damage</text>
+		</Message>
+		<Message id="genre_completionist_1">
+			<text>Level-Up Likely</text>
+		</Message>
+		<Message id="genre_completionist_2">
+			<text>Notice Me Senpai</text>
+		</Message>
+		<Message id="menu_revert">
+			<text>REVERT</text>
+		</Message>
+		<Message id="song_notes">
+			<text>Song Notes:</text>
+		</Message>
+		<Message id="song_notes_setting_mirror_invert">
+			<text>Use Inverse Chart Mirror</text>
+		</Message>
+		<Message id="song_notes_setting_custom_offsets">
+			<text>Use Custom Offsets</text>
+		</Message>
+		<Message id="options_startup_screen">
+			<text>Start Up Screen:</text>
+		</Message>
+		<Message id="options_startup_0">
+			<text>MP + Lobby</text>
+		</Message>
+		<Message id="options_startup_1">
+			<text>MP + Song Select</text>
+		</Message>
+		<Message id="options_startup_2">
+			<text>Song Select</text>
+		</Message>
+		<Message id="popup_replay_count">
+			<text>%(file_count)s replays (%(file_size)s)</text>
+		</Message>
+		<Message id="popup_replay_external">
+			<text>EXTERNAL</text>
+		</Message>
+		<Message id="popup_replay_recent">
+			<text>RECENT</text>
+		</Message>
+		<Message id="popup_replay_import">
+			<text>IMPORT</text>
+		</Message>
+		<Message id="popup_replay_copy">
+			<text>COPY</text>
+		</Message>
+		<Message id="popup_replay_delete">
+			<text>DELETE</text>
+		</Message>
+		<Message id="popup_replay_import_window_title">
+			<text>Replay Data</text>
+		</Message>
+		<Message id="popup_replay_import_edited">
+			<text>Replay may be modified/invalid</text>
+		</Message>
+		<Message id="popup_replay_import_invalid">
+			<text>Invalid Replay String</text>
+		</Message>
+		<Message id="popup_replay_title_external">
+			<text>External Replay Files</text>
+		</Message>
+		<Message id="menu_update_stat_over">
+			<text>Click to update your current stats and skill rating.</text>
+		</Message>
+		<Message id="main_menu_userbar_skill">
+			<text>PLAYER: %(player_name)s      GAMES: %(games_played)s      TOTAL: %(grand_total)s      RANK: %(rank)s      SKILL: Lv. %(avg_rank)s</text>
+		</Message>
+		<Message id="skill_rank_update_fail">
+			<text>Unable to complete rank update due to server issue</text>
+		</Message>
+		<Message id="game_raw_goods">
+			<text>Raw Goods</text>
+		</Message>
+		<Message id="game_results_play_random_song">
+			<text>Play Random Song</text>
+		</Message>
+		<Message id="game_results_flip_graph">
+			<text>Flip Marker Result Graph Vertically</text>
+		</Message>
+		<Message id="air_options_use_websockets">
+			<text>Enable HTTP Overlay</text>
+		</Message>
+		<Message id="air_options_active_port">
+			<text>Listening on port [%(port)s]</text>
+		</Message>
+		<Message id="air_options_unable_to_start_websockets">
+			<text>Unable to start Websocket Server due to unknown reasons</text>
+		</Message>
+		<Message id="options_combo_colors_3">
+			<text>SDG</text>
+		</Message>
+		<Message id="options_combo_colors_4">
+			<text>Black Flag</text>
+		</Message>
+		<Message id="options_combo_colors_5">
+			<text>Average Flag</text>
+		</Message>
+		<Message id="options_combo_colors_6">
+			<text>Boo Flag</text>
+		</Message>
+		<Message id="options_combo_colors_7">
+			<text>Miss Flag</text>
+		</Message>
+		<Message id="options_judge_animations">
+			<text>Show Judge Animations</text>
+		</Message>
+		<Message id="song_selection_song_panel_length_value">
+			<text>%(time)s - %(note_count)s Notes</text>
+		</Message>
+		<Message id="replay_save_status_0">
+			<text>Replay Saved successfully!</text>
+		</Message>
+		<Message id="replay_save_status_1">
+			<text>Error: Failed to save this replay</text>
+		</Message>
+		<Message id="replay_save_status_2">
+			<text>Error: Max replays reached!</text>
+		</Message>
+		<Message id="replay_save_status_3">
+			<text>Error: Replay already Saved!</text>
+		</Message>
+		<Message id="error_server_connection_failure">
+			<text>Failed to make server connection</text>
+		</Message>
+		<Message id="game_result_error_enabled_mods">
+			<text>Score not submitted due to enabled mods</text>
+		</Message>
+		<Message id="game_result_save_success">
+			<text>Score Saved successfully!</text>
+		</Message>
+		<Message id="game_result_graph_accuracy_hit">
+			<text>Note %(note)s - %(judge)s [%(time)sms]</text>
+		</Message>
+		<Message id="game_result_graph_accuracy_hit_early">
+			<text>Note %(note)s - %(judge)s [%(time)sms Early]</text>
+		</Message>
+		<Message id="game_result_graph_accuracy_hit_late">
+			<text>Note %(note)s - %(judge)s [%(time)sms Late]</text>
+		</Message>
+		<Message id="game_result_graph_accuracy_miss">
+			<text>Note %(note)s - %(judge)s</text>
+		</Message>
+		<Message id="options_mod_judge">
+			<text>Custom Judge</text>
+		</Message>
+		<Message id="result_accuracy_deviation">
+			<text>Accuracy/Frames (Judge Offset):
+%(acc_frame)s (±%(acc_dev_frame)s)
+
+Accuracy/Milliseconds:
+%(acc_ms)s (±%(acc_dev_ms)s)</text>
+		</Message>
+		<Message id="result_next_graph_type">
+			<text>Next Graph Type</text>
+		</Message>
+		<Message id="game_result_graph_accuracy_boo">
+			<text>Boo %(note)s - %(time)ss</text>
+		</Message>
+		<Message id="game_results_graph_graph_early">
+			<text>%(value)sms Early</text>
+		</Message>
+		<Message id="game_results_graph_graph_late">
+			<text>%(value)sms Late</text>
+		</Message>
+		<Message id="game_results_graph_note_count">
+			<text>%(notes)s Notes</text>
+		</Message>
+		<Message id="song_selection_song_panel_hover_info">
+			<text>View Song Info</text>
+		</Message>
+		<Message id="song_selection_song_panel_hover_scores">
+			<text>View Highscores</text>
+		</Message>
+		<Message id="song_selection_song_panel_hover_queue">
+			<text>Add to Song Queue</text>
+		</Message>
+		<Message id="song_selection_song_panel_hover_song_options">
+			<text>View Song Options</text>
+		</Message>
+		<Message id="song_selection_context_song_options">
+			<text>Edit Song Options</text>
+		</Message>
+		<Message id="song_selection_context_chart_preview">
+			<text>Play Chart Preview</text>
+		</Message>
+		<Message id="song_selection_context_song_preview">
+			<text>Listen to Song Preview</text>
+		</Message>
+		<Message id="song_selection_context_menu_music">
+			<text>Set as Menu Music</text>
+		</Message>
+		<Message id="song_selection_context_remove_from_queue">
+			<text>Remove from Queue</text>
+		</Message>
+		<Message id="options_song_note">
+			<text>Show Playlist Song Notes</text>
+		</Message>
+		<Message id="clipboard_failure">
+			<text>Copied to Clipboard!</text>
+		</Message>
+		<Message id="clipboard_failure">
+			<text>Error Copying to Clipboard</text>
+		</Message>
+		<Message id="options_overlay_instructions">
+			<text>Overlay Instructions</text>
+		</Message>
+		<Message id="song_selection_song_panel_purchase">
+			<text>Purchase for %(song_price)s Credits</text>
+		</Message>
+		<Message id="song_purchase_error_1">
+			<text>Invalid Song</text>
+		</Message>
+		<Message id="song_purchase_error_2">
+			<text>Not enough Credits to purchase song</text>
+		</Message>
+		<Message id="song_purchase_error_3">
+			<text>Song already owned</text>
+		</Message>
+		<Message id="song_purchase_complete">
+			<text>Song Purchased: %(name)s</text>
+		</Message>
+		<Message id="song_selection_song_panel_purchase_not_enough">
+			<text>Not Enough Credits:
+%(credits)s / %(price)s</text>
+		</Message>
+		<Message id="song_favorite_label">
+			<text>Favorite Song:</text>
+		</Message>
+		<Message id="filter_type_song_favorite">
+			<text>Favorite Song</text>
+		</Message>
+		<Message id="register_online">
+			<text>Register Online</text>
+		</Message>
+		<Message id="popup_highscores_page_number">
+			<text>Page %(page)s</text>
+		</Message>
+		<Message id="popup_highscores_previous">
+			<text>PREVIOUS</text>
+		</Message>
+		<Message id="popup_highscores_next">
+			<text>NEXT</text>
+		</Message>
+		<Message id="popup_highscores_close">
+			<text>CLOSE</text>
+		</Message>
+		<Message id="popup_highscores_refresh">
+			<text>REFRESH</text>
+		</Message>
+		<Message id="popup_highscores_username">
+			<text>Username:</text>
+		</Message>
+		<Message id="popup_highscores_score">
+			<text>Score:</text>
+		</Message>
+		<Message id="popup_highscores_pa_spread">
+			<text>PA Spread:</text>
+		</Message>
+		<Message id="popup_help_close">
+			<text>CLOSE</text>
+		</Message>
+		<Message id="popup_token_close">
+			<text>CLOSE</text>
+		</Message>
+		<Message id="show_profiler">
+			<text>Show Profiler</text>
+		</Message>
+		<Message id="hide_profiler">
+			<text>Hide Profiler</text>
+		</Message>
+		<Message id="profiler_current_fps">
+			<text>Current Fps</text>
+		</Message>
+		<Message id="profiler_average_fps">
+			<text>Average Fps</text>
+		</Message>
+		<Message id="profiler_memory_used">
+			<text>Memory Used</text>
+		</Message>
+		<Message id="menu_tokens_normal">
+			<text>Normal Tokens</text>
+		</Message>
+		<Message id="menu_tokens_skill">
+			<text>Skill Tokens</text>
+		</Message>
+		<Message id="menu_tokens_hide_complete">
+			<text>Hide Complete:</text>
+		</Message>
+		<Message id="menu_tokens_unknown_unlock_condition">
+			<text>Unlockable under certain levels or certain conditions.</text>
+		</Message>
+		<Message id="menu_tokens_unlock_by_playing">
+			<text>Unlock by Playing:</text>
+		</Message>
+		<Message id="show_menu">
+			<text>Show Menu</text>
+		</Message>
+		<Message id="popup_cm_reload_engine_user">
+			<text>Reload Engine / User</text>
+		</Message>
+		<Message id="popup_cm_save_screenshot">
+			<text>Save ScreenShot - Local</text>
+		</Message>
+		<Message id="popup_cm_full_screen">
+			<text>Full Screen</text>
+		</Message>
+		<Message id="popup_cm_switch_profile">
+			<text>Switch Profile</text>
+		</Message>
+		<Message id="popup_message_missing_error_text">
+			<text>&lt;Missing Error Text&gt;</text>
+		</Message>
+		<Message id="popup_replay_score">
+			<text>Score: %(score)s</text>
+		</Message>
+		<Message id="popup_replay_missing_song_data">
+			<text>Missing song data</text>
+		</Message>
+		<Message id="popup_queue_import">
+			<text>IMPORT</text>
+		</Message>
+		<Message id="popup_queue_import_song_queue">
+			<text>Import Song Queue</text>
+		</Message>
+		<Message id="popup_queue_copy">
+			<text>COPY</text>
+		</Message>
+		<Message id="popup_queue_delete">
+			<text>DELETE</text>
+		</Message>
+		<Message id="popup_queue_play">
+			<text>PLAY</text>
+		</Message>
+		<Message id="popup_queue_rename">
+			<text>RENAME</text>
+		</Message>
+		<Message id="popup_queue_rename_no_caps">
+			<text>Rename</text>
+		</Message>
+		<Message id="song_selection_banned_unknown">
+			<text>Unknown Lock Reason (%(access)s) - This shouldn't appear, message Velocity</text>
+		</Message>
+		<Message id="song_selection_load_default_engine">
+			<text>Loading Default Engine, please wait...</text>
+		</Message>
+		<Message id="song_selection_played">
+			<text>PLAYED</text>
+		</Message>
+		<Message id="song_selection_load_music_for">
+			<text>Loading Music for &quot;%(name)s&quot;</text>
+		</Message>
+		<Message id="song_selection_load_play_chart_preview">
+			<text>Playing chart preview...</text>
+		</Message>
+		<Message id="song_selection_queue_panel_play_from_here">
+			<text>PLAY FROM HERE</text>
+		</Message>
+		<Message id="song_selection_song_queue_name_prompt">
+			<text>Song Queue Name</text>
+		</Message>
+		<Message id="song_selection_no_songs_random">
+			<text>No possible songs to choose from...</text>
+		</Message>
+		<Message id="song_selection_playing_menu_music">
+			<text>Playing menu music...</text>
+		</Message>
+		<Message id="song_selection_now_playing">
+			<text>Now Playing: %(name)s</text>
+		</Message>
+		<Message id="song_selection_playing_song_preview">
+			<text>Playing song preview...</text>
+		</Message>
+		<Message id="song_selection_search_song_name">
+			<text>Song Name</text>
+		</Message>
+		<Message id="song_selection_search_author">
+			<text>Author</text>
+		</Message>
+		<Message id="song_selection_search_stepauthor">
+			<text>Stepauthor</text>
+		</Message>
+		<Message id="song_selection_search_style">
+			<text>Style</text>
+		</Message>
+		<Message id="main_menu_music_play">
+			<text>Play</text>
+		</Message>
+		<Message id="main_menu_music_pause">
+			<text>Pause</text>
+		</Message>
+		<Message id="main_menu_music_stop">
+			<text>Stop</text>
+		</Message>
+		<Message id="main_menu_music_remove">
+			<text>Remove</text>
+		</Message>
+		<Message id="main_menu_now_playing">
+			<text>Now Playing: %(music_name)s</text>
+		</Message>
+		<Message id="options_judge_speed">
+			<text>Judge Animation Speed</text>
+		</Message>
+		<Message id="song_notes_setting_apply_current_offsets">
+			<text>Apply Current Offsets</text>
+		</Message>
+		<Message id="options_open_noteskin_editor">
+			<text>Open noteskin editor</text>
+		</Message>
+		<Message id="options_import_noteskin_json">
+			<text>Import noteskin JSON</text>
+		</Message>
+		<Message id="options_copy_noteskin_data">
+			<text>Copy noteskin data</text>
+		</Message>
+		<Message id="options_combo_colors_8">
+			<text>Raw Goods</text>
+		</Message>
+		<Message id="options_raw_goods_tracker">
+			<text>Raw Goods Tracker</text>
+		</Message>
+	</Language>
+</Game>

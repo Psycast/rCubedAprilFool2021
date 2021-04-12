@@ -1,0 +1,118 @@
+R^3 (v1.3.1) [2020-12-24]
+---------------------------------------------------------------------
+@Psycast
+- Anti-GPU Rampdown (#243)
+- Add Judge Animation Speed Slider (#233)
+- Make File Paths on other OS work. (#235)
+- Embed Readme images into repo. (#247)
+
+@G-Flat
+- Refactor UI constructors (#234)
+- Beautify MP room create prompt (#251)
+- Use a nicer prompt window (#242)
+- Remove custom noteskins menu (#241)
+- Move UI classes into classes.ui.* (#240)
+- Enable applying current offsets in song notes (#237)
+
+@Zageron
+- Embed Readme images into repo. (#247) - Co-Author
+- Edit url prefix. (#245)
+
+@Trevor
+- Add combo colour for raw goods (#253)
+
+@Fission
+- Force `LF` line endings in `.gitattributes` (#249)
+- Remove linebreaks between `README.md` badges (#248)
+
+
+R^3 (v1.3.0) [2020-10-01]
+---------------------------------------------------------------------
+@Psycast
+- Massive MenuSongSelection refactor. (#179)
+- Refactor Song Results (#203)
+- Rewrite UI Box Components (#180)
+- Rewrite Song Options (#208)
+- Rewrite Noteskins to use Embedded Data instead of network (#209)
+- Add Song Purchase (#217)
+- Song Favorites, Song Ratings, FC Tracking and More. (#222)
+- Add Reload Engine / User to global context menu. (#177)
+- Add Register Online button to login screen. (#223)
+- Add option to make judge animations static (#151)
+- Expand Notescale range to 10% - 150% (#213)
+- Multiple Fixes for Song Preview and Editor (#214)
+- Fix receptor layer position. (#175)
+- Reverse Fix (#176)
+- Update RollingAverage to use Vector.int (#123)
+- Websocket Fixes and Optimizations (#181)
+- Rewrite LocalStore to use a static reference. (#198)
+- Remove config blocks for air and not_air. (#110)
+- Fix #54: Tokens tab shows incorrect Token graphics for Normal tokens (#113)
+- Fix #50: Black background in song loading screens (#114)
+- Fix #58: Build info string shown in gameplay background (#114)
+- Fix #82: Game freezes when playing with custom noteskin without noteskin data. (#115)
+
+@G-Flat
+- Massive MenuSongSelection refactor. (#179) - Co-Author
+- Rewrite UI Box Components (#180) - Co-Author
+- Enable playing song previews in song selection menu (#194)
+- Enable playing chart previews in song selection menu (#197)
+- Turn input boxes red for invalid settings (#218)
+- Show import and export filter buttons in filter manager (#219)
+- Use vector typing for ObjectPool (#128)
+- Remove old Flash version checks (#119)
+- Display foreign fonts correctly (#221)
+- Make most hardcoded strings translatable (#224) 
+- Reduce login loading time (#159)
+- Song selection menu improvements (#172)
+- Refactor takeScreenShot (#178)
+- Refactor clipboard code (#211)
+
+@Xyr00
+- Add Additional Combo Color Options (#111)
+
+@Sploder12
+- Add Profile Change in context menu. (#183) 
+
+R^3 (v1.2.4) [2020-06-22]
+---------------------------------------------------------------------
+- Flip result graph when switching graph type. (Fix) (#107) - @G-flat
+- Add rolling port selection and error handling for Websockets. (#108) - @Psycast
+
+R^3 (v1.2.3) [2020-06-21]
+---------------------------------------------------------------------
+- Add checkbox for vertically flipping the marker result graph (#75) - @G-flat
+- Fix for #5 - Search Auto Focus (#89) - @Psycast
+- Highlight personal best scores (#87) - @G-flat
+- Skip over inaccessible songs during menu navigation (#90) - @G-flat
+- Make division level array static (#91) - @G-flat
+- Implement Websocket Support for Game Status (#95) - @Psycast
+- Fix for multiplayer room join bug. (#97) - @dave936
+- Enable editing songs in the current queue (#96) - G-flat
+- "MP Connection Lost" hidden while in solo (#98, #102) - @dave936
+- Implement Websocket Support for Game Status (#95) - @Psycast
+- Refactor Song Selection and Song Item (#100) - @Psycast
+- Gray out "Save Replay" button rather than hide it (#99) - @dave936
+
+R^3 (v1.2.2) [2020-06-14]
+---------------------------------------------------------------------
+- Make division colour and title arrays static (#61) - @G-flat
+- Rebuild Judge Animations to use Time instead of Frames (#62) - @Psycast
+- Fix Infinite loading when accessing in-game song leaderboards out-of-bounds (#57) - @Psycast
+- Add refresh buttons in the song selection menu and highscores popup (#66) - @G-flat
+- Additional height added to token display boxes for token descriptions that are 5+ lines. (#68) - @Xyr00
+- Add "Play Random Button" To GameResults Screen (#67) - @dave936
+- Temporarily remove the reverse mod. (#78) - @Zageron
+- Prevent repeating the first song in queue (#76) - @G-flat
+
+R^3 (v1.2.1) [2020-05-31]
+---------------------------------------------------------------------
+- Add Division 8 title, adjust D7 cutoff. @maxproske
+- Build and asset pipeline overhaul. @Zageron
+- Add property to User class for tracking raw good count (#36) @TCHalogen
+- Highlight options menu button when in corresponding screen (#9) (#37) @TCHalogen
+
+R^3 (v1.2.0) [2020-04-04]
+---------------------------------------------------------------------
+- [Change] Complete repository formatting overhaul.
+- [Remove] Deleted April Fools special level code.

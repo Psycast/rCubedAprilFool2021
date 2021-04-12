@@ -1,0 +1,137 @@
+<ActorFrame><children>
+
+	<!--nick: (rainbow)-->
+	
+	<Layer Type="ActorFrame" OnCommand="%function (self) char_kar=self; self:bob();
+	self:effectclock('music'); self:effectmagnitude(0,4,0); self:effectoffset(1); self:zoom(0); self:zoomx(3) end" HideQCommand="zoomy,0;zoomx,3;"
+	HideCommand="bouncebegin,0.2;zoomy,0;zoomx,3;" SpawnCommand="bounceend,0.3;zoom,1;" SpawnQCommand="zoom,1;" > <children>
+		
+		<ActorFrame OnCommand="zoom,0.9" ><children>
+		
+		<Actor
+			File="karhis 3x2"
+			OnCommand="diffusealpha,1;animate,0;diffuse,.8,.8,.8,1;playcommand,Idle;"
+			IdleCommand="setstate,0;zoomx,1.1;zoomy,.9;linear,.1;zoom,1;pulse;effectmagnitude,1,1,1;effectcolor1,1.02,.98,1,1;effectcolor2,.98,1.02,1,1;"
+			Idle2Command="setstate,0;zoomx,1.1;zoomy,.9;linear,.1;diffuse,.8,.8,.8,1;zoom,1;pulse;effectmagnitude,1,1,1;effectcolor1,1.02,.98,1,1;effectcolor2,.98,1.02,1,1;"
+			Idle3Command="setstate,0;zoomx,1.1;zoomy,.9;linear,.1;diffuse,.5,.5,.5,1;zoom,1;pulse;effectmagnitude,1,1,1;effectcolor1,1.02,.98,1,1;effectcolor2,.98,1.02,1,1;"
+			PunchCommand="setstate,1;zoom,1.1;linear,.1;zoom,1;stopeffect;"
+			PushCommand="setstate,2;zoom,1.1;linear,.1;zoom,1;stopeffect;"
+			CastCommand="setstate,3;zoom,1.1;linear,.1;zoom,1;stopeffect;"
+			Cast2Command="setstate,3;zoom,1.1;linear,.1;zoom,1;stopeffect;"
+			RaiseCommand="stoptweening;setstate,4;zoom,1.1;linear,.1;zoom,1;stopeffect;"
+		/>
+		
+		<Actor File="swipe" OnCommand="blend,add;diffusealpha,0;" PunchCommand="stoptweening;diffusealpha,1;accelerate,.4;diffusealpha,0;" />
+		<Actor File="push" OnCommand="blend,add;diffusealpha,0;" PushCommand="stoptweening;diffusealpha,1;accelerate,.4;diffusealpha,0;" />
+		<Actor File="castsmear" OnCommand="blend,add;diffusealpha,0;" CastCommand="stoptweening;diffusealpha,1;accelerate,.4;diffusealpha,0;" RaiseCommand="stoptweening;diffusealpha,0;" />
+		<Actor File="castsmear" OnCommand="blend,add;diffusealpha,0;" Cast2Command="stoptweening;diffusealpha,1;accelerate,.4;diffusealpha,0;" />
+		<Actor File="raise" OnCommand="blend,add;diffusealpha,0;" RaiseCommand="stoptweening;diffusealpha,1;accelerate,.4;diffusealpha,0;" />
+		
+		<Layer Type="ActorFrame" OnCommand="zoom,2.5;spin;effectmagnitude,0,0,90;"><children>
+			<Layer File="casting"
+			OnCommand="blend,add;diffuse,.4,0,.7,0;effectperiod,0.6"
+			CastCommand="%function (self)
+				self:zoom(1.1);
+				self:linear(0.8);
+				self:diffusealpha(1);
+				self:linear(1);
+				self:zoom(0.7);
+				self:linear(0.8);
+				self:diffusealpha(0);
+			end" />
+		</children> </Layer>
+		
+		<0Layer Type="ActorFrame" CastCommand="%function(self) self:playcommand('Inner'); chara_drand = math.random(0,360);
+		chara_dspd = (math.random(0,600)/100)-3; self:playcommand('Turn') end"
+		TurnCommand="rotationz,chara_drand;
+		linear,0.1;rotationz,chara_drand+(60*chara_dspd);
+		linear,0.1;rotationz,chara_drand+(110*chara_dspd);
+		linear,0.1;rotationz,chara_drand+(150*chara_dspd);
+		linear,0.1;rotationz,chara_drand+(180*chara_dspd);
+		linear,0.2;rotationz,chara_drand+(200*chara_dspd);
+		linear,1.0;rotationz,chara_drand+(350*chara_dspd);
+		linear,0.2;rotationz,chara_drand+(370*chara_dspd);
+		linear,0.2;rotationz,chara_drand+(400*chara_dspd);
+		linear,0.2;rotationz,chara_drand+(440*chara_dspd);
+		linear,0.2;rotationz,chara_drand+(490*chara_dspd);
+		linear,0.2;rotationz,chara_drand+(550*chara_dspd);"
+		><children>
+		<Layer File="triangle"
+		OnCommand="vertalign,top;blend,add;diffusealpha,0;fadetop,0.2;fadebottom,0.2;
+		diffuseblink;effectcolor1,.4,0,.7,0.3;effectcolor2,.4,0,.7,1;effectperiod,0.066"
+		InnerCommand="zoom,1;diffusealpha,0;linear,0.5;diffusealpha,1;zoomy,5;zoomx,3;linear,1.5;
+		zoomy,8;zoomx,3;linear,0.6;zoomy,20;zoomx,0;sleep,0;diffusealpha,0;"
+		/>
+		</children> </0Layer>
+		<0Layer Type="ActorFrame" CastCommand="%function(self) self:playcommand('Inner'); chara_drand = math.random(0,360);
+		chara_dspd = (math.random(0,600)/100)-3; self:playcommand('Turn') end"
+		TurnCommand="rotationz,chara_drand;
+		linear,0.1;rotationz,chara_drand+(60*chara_dspd);
+		linear,0.1;rotationz,chara_drand+(110*chara_dspd);
+		linear,0.1;rotationz,chara_drand+(150*chara_dspd);
+		linear,0.1;rotationz,chara_drand+(180*chara_dspd);
+		linear,0.2;rotationz,chara_drand+(200*chara_dspd);
+		linear,1.0;rotationz,chara_drand+(350*chara_dspd);
+		linear,0.2;rotationz,chara_drand+(370*chara_dspd);
+		linear,0.2;rotationz,chara_drand+(400*chara_dspd);
+		linear,0.2;rotationz,chara_drand+(440*chara_dspd);
+		linear,0.2;rotationz,chara_drand+(490*chara_dspd);
+		linear,0.2;rotationz,chara_drand+(550*chara_dspd);"
+		><children>
+		<Layer File="triangle"
+		OnCommand="vertalign,top;blend,add;diffusealpha,0;fadetop,0.2;fadebottom,0.2;
+		diffuseblink;effectcolor1,.4,0,.7,0.3;effectcolor2,.4,0,.7,1;effectperiod,0.066"
+		InnerCommand="zoom,1;diffusealpha,0;linear,0.5;diffusealpha,1;zoomy,5;zoomx,3;linear,1.5;
+		zoomy,8;zoomx,3;linear,0.6;zoomy,20;zoomx,0;sleep,0;diffusealpha,0;"
+		/>
+		</children> </0Layer>
+		<0Layer Type="ActorFrame" CastCommand="%function(self) self:playcommand('Inner'); chara_drand = math.random(0,360);
+		chara_dspd = (math.random(0,600)/100)-3; self:playcommand('Turn') end"
+		TurnCommand="rotationz,chara_drand;
+		linear,0.1;rotationz,chara_drand+(60*chara_dspd);
+		linear,0.1;rotationz,chara_drand+(110*chara_dspd);
+		linear,0.1;rotationz,chara_drand+(150*chara_dspd);
+		linear,0.1;rotationz,chara_drand+(180*chara_dspd);
+		linear,0.2;rotationz,chara_drand+(200*chara_dspd);
+		linear,1.0;rotationz,chara_drand+(350*chara_dspd);
+		linear,0.2;rotationz,chara_drand+(370*chara_dspd);
+		linear,0.2;rotationz,chara_drand+(400*chara_dspd);
+		linear,0.2;rotationz,chara_drand+(440*chara_dspd);
+		linear,0.2;rotationz,chara_drand+(490*chara_dspd);
+		linear,0.2;rotationz,chara_drand+(550*chara_dspd);"
+		><children>
+		<Layer File="triangle"
+		OnCommand="vertalign,top;blend,add;diffusealpha,0;fadetop,0.2;fadebottom,0.2;
+		diffuseblink;effectcolor1,.4,0,.7,0.3;effectcolor2,.4,0,.7,1;effectperiod,0.066"
+		InnerCommand="zoom,1;diffusealpha,0;linear,0.5;diffusealpha,1;zoomy,5;zoomx,3;linear,1.5;
+		zoomy,8;zoomx,3;linear,0.6;zoomy,20;zoomx,0;sleep,0;diffusealpha,0;"
+		/>
+		</children> </0Layer>
+		<0Layer Type="ActorFrame" CastCommand="%function(self) self:playcommand('Inner'); chara_drand = math.random(0,360);
+		chara_dspd = (math.random(0,600)/100)-3; self:playcommand('Turn') end"
+		TurnCommand="rotationz,chara_drand;
+		linear,0.1;rotationz,chara_drand+(60*chara_dspd);
+		linear,0.1;rotationz,chara_drand+(110*chara_dspd);
+		linear,0.1;rotationz,chara_drand+(150*chara_dspd);
+		linear,0.1;rotationz,chara_drand+(180*chara_dspd);
+		linear,0.2;rotationz,chara_drand+(200*chara_dspd);
+		linear,1.0;rotationz,chara_drand+(350*chara_dspd);
+		linear,0.2;rotationz,chara_drand+(370*chara_dspd);
+		linear,0.2;rotationz,chara_drand+(400*chara_dspd);
+		linear,0.2;rotationz,chara_drand+(440*chara_dspd);
+		linear,0.2;rotationz,chara_drand+(490*chara_dspd);
+		linear,0.2;rotationz,chara_drand+(550*chara_dspd);"
+		><children>
+		<Layer File="triangle"
+		OnCommand="vertalign,top;blend,add;diffusealpha,0;fadetop,0.2;fadebottom,0.2;
+		diffuseblink;effectcolor1,.4,0,.7,0.3;effectcolor2,.4,0,.7,1;effectperiod,0.066"
+		InnerCommand="zoom,1;diffusealpha,0;linear,0.5;diffusealpha,1;zoomy,5;zoomx,3;linear,1.5;
+		zoomy,8;zoomx,3;linear,0.6;zoomy,20;zoomx,0;sleep,0;diffusealpha,0;"
+		/>
+		</children> </0Layer>
+		
+		</children>	</ActorFrame>
+		
+	</children>	</Layer>
+
+</children></ActorFrame>
