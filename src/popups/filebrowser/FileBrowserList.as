@@ -1,14 +1,18 @@
-package popups
+package popups.filebrowser
 {
     import classes.ui.ScrollBar;
     import flash.display.DisplayObjectContainer;
     import flash.display.Sprite;
-    import flash.events.MouseEvent;
     import flash.events.Event;
+    import flash.events.MouseEvent;
     import flash.geom.Rectangle;
+    import popups.filebrowser.FileBrowserItem;
+    import popups.filebrowser.FileFolder;
 
-    public class ListFileBrowser extends Sprite
+    public class FileBrowserList extends Sprite
     {
+        private static var LAST_SCROLL:Number = 0;
+
         private var _pane:Sprite;
 
         private var _width:Number = 772;
@@ -16,15 +20,15 @@ package popups
 
         private var _vscroll:ScrollBar;
         private var songButtons:Vector.<FileBrowserItem> = new Vector.<FileBrowserItem>();
-        private var renderElements:Vector.<Object>;
+        private var renderElements:Vector.<FileFolder>;
         private var renderCount:int = 0;
 
         private var _scrollY:Number = 0;
         private var _calcHeight:int = 0;
 
-        private var _selectedSongData:Object;
+        private var _selectedSongData:FileFolder;
 
-        public function ListFileBrowser(parent:DisplayObjectContainer = null, xpos:Number = 0, ypos:Number = 0)
+        public function FileBrowserList(parent:DisplayObjectContainer = null, xpos:Number = 0, ypos:Number = 0)
         {
             tabChildren = tabEnabled = false;
 
@@ -78,11 +82,13 @@ package popups
             //_vscroll.scrollFactor = scrollFactorVertical;
             _vscroll.visible = doScroll;
 
-            renderElements = new Vector.<Object>(renderCount, true);
+            renderElements = new Vector.<FileFolder>(renderCount, true);
             for (i = 0; i < list.length; i++)
                 renderElements[i] = list[i];
 
-            updateChildrenVisibility();
+            // Scroll to last place.
+            _vscroll.scrollTo(LAST_SCROLL);
+            scrollVertical = LAST_SCROLL;
         }
 
 
@@ -101,7 +107,7 @@ package popups
             var songButton:FileBrowserItem;
             var _y:Number;
             var _inBounds:Boolean;
-            var songObject:Object;
+            var songObject:FileFolder;
 
             var GAP:int = (FileBrowserItem.FIXED_HEIGHT + 5);
             var startingIndex:int = int(Math.max(0, Math.floor((_scrollY * -1) / GAP) - 1));
@@ -268,6 +274,7 @@ package popups
         public function set scrollVertical(val:Number):void
         {
             _scrollY = -((_calcHeight - _height) * Math.max(Math.min(val, 1), 0));
+            LAST_SCROLL = val;
             updateChildrenVisibility();
         }
 

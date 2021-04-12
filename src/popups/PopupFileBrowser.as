@@ -3,33 +3,36 @@ package popups
     import assets.menu.icons.fa.iconClose;
     import assets.menu.icons.fa.iconFolder;
     import assets.menu.icons.fa.iconUpLevel;
-    import classes.FileTracker;
     import classes.Language;
     import classes.chart.levels.ExternalChartBase;
     import classes.chart.levels.ExternalChartCache;
-    import classes.chart.levels.ExternalChartScanner;
     import classes.ui.Box;
     import classes.ui.BoxIcon;
     import classes.ui.Text;
     import flash.display.Bitmap;
     import flash.display.BitmapData;
+    import flash.display.Loader;
+    import flash.display.LoaderInfo;
     import flash.display.Sprite;
     import flash.events.Event;
+    import flash.events.IOErrorEvent;
     import flash.events.MouseEvent;
+    import flash.events.SecurityErrorEvent;
     import flash.events.TimerEvent;
     import flash.filesystem.File;
     import flash.filters.BlurFilter;
     import flash.geom.Point;
+    import flash.net.URLRequest;
+    import flash.system.LoaderContext;
     import flash.utils.Timer;
     import flash.utils.getTimer;
     import menu.MenuPanel;
     import menu.MenuSongSelection;
-    import flash.display.Loader;
-    import flash.events.SecurityErrorEvent;
-    import flash.events.IOErrorEvent;
-    import flash.net.URLRequest;
-    import flash.system.LoaderContext;
-    import flash.display.LoaderInfo;
+    import popups.filebrowser.FileBrowserDifficultyItem;
+    import popups.filebrowser.FileBrowserItem;
+    import popups.filebrowser.FileFolderItem;
+    import popups.filebrowser.FileFolder;
+    import popups.filebrowser.FileBrowserList;
 
     public class PopupFileBrowser extends MenuPanel
     {
@@ -53,7 +56,7 @@ package popups
         private var selectFolder:BoxIcon;
         private var closeWindow:BoxIcon;
 
-        private var songBrowser:ListFileBrowser;
+        private var songBrowser:FileBrowserList;
         private var songDetails:Sprite;
         private var songDetailsWidth:Number = 0;
         private var songDifficulties:Array = [];
@@ -108,7 +111,7 @@ package popups
             upFolder = new BoxIcon(box, 6, 6, 27, 27, new iconUpLevel(), clickHandler);
 
             // Song List
-            songBrowser = new ListFileBrowser(box, 6, 39);
+            songBrowser = new FileBrowserList(box, 6, 39);
             songBrowser.addEventListener(MouseEvent.CLICK, e_songListClick);
 
             songDetails = new Sprite();
@@ -176,12 +179,12 @@ package popups
                 cacheValue = pathCache.getValue(pathList[i]);
                 path = pathList[i];
                 endOfFolder = path.lastIndexOf(File.separator) + 1;
-                renderList[i] = {"folder": path.substr(0, endOfFolder), "file": path.substr(endOfFolder), "data": [{"loc": pathList[i], "info": cacheValue}]};
+                renderList[i] = new FileFolder(path.substr(0, endOfFolder), path.substr(endOfFolder), new FileFolderItem(pathList[i], cacheValue));
             }
 
             // Folder Merging
-            var elm1:Object;
-            var elm2:Object;
+            var elm1:FileFolder;
+            var elm2:FileFolder;
             var n:int;
             renderList.sortOn(["folder"], [Array.CASEINSENSITIVE]);
             for (i = 0; i < arLen - 1; i++)
@@ -259,130 +262,212 @@ package popups
 
             lockUI = true;
 
-            var loadStartTime:Number = getTimer();
+            var loadTimer:Timer;
 
-            var delayTimer:Timer = new Timer(100, 1);
-            delayTimer.addEventListener(TimerEvent.TIMER_COMPLETE, e_loadDelay);
-            delayTimer.start();
+            // File Searching
+            var dirQueue:Vector.<FileDirectoryQueue> = new <FileDirectoryQueue>[new FileDirectoryQueue(rootFolder, 0)];
+            var fileQueue:Vector.<File> = new <File>[];
+            var activeDirQueue:FileDirectoryQueue;
+            var maxDepth:int = 2;
+            var validExt:Array = ExternalChartBase.VALID_CHART_EXTENSIONS;
 
-            function e_loadDelay(e:Event):void
+            e_startFileSearch();
+
+            function e_startFileSearch():void
             {
-                var filePaths:FileTracker = ExternalChartScanner.getPossibleChartPaths(rootFolder);
+                loadingPathIndex.text = "...Searching...";
+                loadingPathFolder.text = '';
+                loadingPathSong.text = '';
 
-                if (filePaths.file_paths.length <= 0)
+                loadTimer = new Timer(20, 1);
+                loadTimer.addEventListener(TimerEvent.TIMER_COMPLETE, e_searchTimer);
+                loadTimer.start();
+            }
+
+            function e_searchTimer(e:TimerEvent):void
+            {
+                var startTimer:Number = getTimer();
+                var isDelay:Boolean = false;
+
+                // File Loop
+                var found:Array;
+                var len:int;
+                var file:File;
+                var i:int;
+
+                while (dirQueue.length > 0)
+                {
+                    activeDirQueue = dirQueue.pop();
+
+                    found = activeDirQueue.dir.getDirectoryListing();
+                    len = found.length;
+
+                    for (i = 0; i < len; i++)
+                    {
+                        file = found[i];
+
+                        if (file.isHidden || !file.exists)
+                        {
+                            continue;
+                        }
+                        else if (file.isDirectory)
+                        {
+                            if (activeDirQueue.level < maxDepth)
+                                dirQueue.push(new FileDirectoryQueue(file, activeDirQueue.level + 1));
+                        }
+                        else
+                        {
+                            if (file.extension != null && validExt.indexOf(file.extension.toLowerCase()) != -1)
+                                fileQueue.push(file);
+                        }
+                    }
+
+                    var endTimer:Number = getTimer();
+                    if (endTimer - startTimer > 200)
+                    {
+                        isDelay = true;
+                        break;
+                    }
+                }
+
+                loadingPathIndex.text = "Found: " + fileQueue.length;
+
+                // Loaded All Files
+                if (dirQueue.length == 0)
+                {
+                    loadTimer.removeEventListener(TimerEvent.TIMER_COMPLETE, e_searchTimer);
+                    e_startFileQueue();
+                    return;
+                }
+
+                // Not Finished, Continue next frame.
+                if (isDelay && dirQueue.length > 0)
+                {
+                    loadTimer.start();
+                }
+
+            }
+
+            // File Loading
+            var pathIndex:int;
+            var pathTotal:int;
+
+            function e_startFileQueue():void
+            {
+                if (fileQueue.length <= 0)
                 {
                     lockUI = false;
                     buildFileList();
                     return;
                 }
 
-                var loadTimer:Timer = new Timer(20, 1);
-                loadTimer.addEventListener(TimerEvent.TIMER_COMPLETE, e_parseTimer);
-
-                var pathIndex:int = 0;
-                var pathTotal:int = filePaths.file_paths.length;
+                pathIndex = 0;
+                pathTotal = fileQueue.length;
 
                 loadingPathIndex.text = pathIndex + " / " + pathTotal;
                 loadingPathFolder.text = '';
                 loadingPathSong.text = '';
 
-                function e_parseTimer(e:TimerEvent):void
-                {
-                    var emb:ExternalChartBase;
-                    var stringPath:String;
-                    var startTimer:Number = getTimer();
-                    var isDelay:Boolean = false;
-                    var cacheObj:Object;
+                loadTimer = new Timer(20, 1);
+                loadTimer.addEventListener(TimerEvent.TIMER_COMPLETE, e_parseTimer);
+                loadTimer.start();
+            }
 
-                    while (pathIndex < pathTotal)
+            function e_parseTimer(e:TimerEvent):void
+            {
+                var emb:ExternalChartBase;
+                var chartFile:File;
+                var stringPath:String;
+                var startTimer:Number = getTimer();
+                var isDelay:Boolean = false;
+                var cacheObj:Object;
+
+                while (pathIndex < pathTotal)
+                {
+                    chartFile = fileQueue[pathIndex];
+                    stringPath = chartFile.nativePath;
+                    if ((cacheObj = pathCache.getValue(stringPath)) != null)
                     {
-                        stringPath = filePaths.file_paths[pathIndex];
-                        if ((cacheObj = pathCache.getValue(stringPath)) != null)
+                        if (cacheObj.valid == 1)
+                            pathList.push(stringPath);
+                    }
+                    else
+                    {
+                        loadingPathIndex.text = pathIndex + " / " + pathTotal;
+
+                        if (chartFile.parent.parent.nativePath == rootFolder.nativePath)
                         {
-                            if (cacheObj.valid == 1)
-                                pathList.push(stringPath);
+                            loadingPathFolder.text = chartFile.parent.name;
+                            loadingPathSong.text = '';
                         }
                         else
                         {
-                            var chartFile:File = new File(stringPath);
-
-                            loadingPathIndex.text = pathIndex + " / " + pathTotal;
-
-                            if (chartFile.parent.parent.nativePath == rootFolder.nativePath)
-                            {
-                                loadingPathFolder.text = chartFile.parent.name;
-                                loadingPathSong.text = '';
-                            }
-                            else
-                            {
-                                loadingPathFolder.text = chartFile.parent.parent.name;
-                                loadingPathSong.text = chartFile.parent.name;
-                            }
-
-                            cacheObj = {"valid": 0}
-                            emb = new ExternalChartBase();
-                            if (emb.load(chartFile, true))
-                            {
-                                var chartData:Object = emb.getInfo();
-                                var chartCharts:Array = emb.getAllCharts();
-
-                                cacheObj = {"valid": 1,
-                                        "name": chartData['name'],
-                                        "author": chartData['author'],
-                                        "stepauthor": chartData['stepauthor'],
-                                        "difficulty": chartData['difficulty'],
-                                        "music": chartData['music'],
-                                        "banner": chartData['banner'],
-                                        "chart": []}
-
-                                for (var i:int = 0; i < chartCharts.length; i++)
-                                {
-                                    var difficultyData:Object = chartCharts[i];
-                                    cacheObj['chart'][i] = {"class": difficultyData['class'],
-                                            "class_color": difficultyData['class_color'],
-                                            "desc": difficultyData['desc'],
-                                            "difficulty": difficultyData['difficulty'],
-                                            "type": difficultyData['type'],
-                                            "radar_values": difficultyData['radar_values'],
-                                            "arrows": difficultyData['arrows'],
-                                            "holds": difficultyData['holds'],
-                                            "mines": difficultyData['mines']};
-                                }
-                            }
-
-                            pathCache.setValue(stringPath, cacheObj);
-
-                            if (cacheObj.valid == 1)
-                                pathList.push(stringPath);
+                            loadingPathFolder.text = chartFile.parent.parent.name;
+                            loadingPathSong.text = chartFile.parent.name;
                         }
-                        pathIndex++;
 
-                        var endTimer:Number = getTimer();
-                        if (endTimer - startTimer > 100)
+                        cacheObj = {"valid": 0}
+                        emb = new ExternalChartBase();
+                        if (emb.load(chartFile, true))
                         {
-                            isDelay = true;
-                            break;
+                            var chartData:Object = emb.getInfo();
+                            var chartCharts:Array = emb.getAllCharts();
+
+                            cacheObj = {"valid": 1,
+                                    "name": chartData['name'],
+                                    "author": chartData['author'],
+                                    "stepauthor": chartData['stepauthor'],
+                                    "difficulty": chartData['difficulty'],
+                                    "music": chartData['music'],
+                                    "banner": chartData['banner'],
+                                    "chart": []}
+
+                            for (var i:int = 0; i < chartCharts.length; i++)
+                            {
+                                var difficultyData:Object = chartCharts[i];
+                                cacheObj['chart'][i] = {"class": difficultyData['class'],
+                                        "class_color": difficultyData['class_color'],
+                                        "desc": difficultyData['desc'],
+                                        "difficulty": difficultyData['difficulty'],
+                                        "type": difficultyData['type'],
+                                        "radar_values": difficultyData['radar_values'],
+                                        "arrows": difficultyData['arrows'],
+                                        "holds": difficultyData['holds'],
+                                        "mines": difficultyData['mines']};
+                            }
                         }
+
+                        pathCache.setValue(stringPath, cacheObj);
+
+                        if (cacheObj.valid == 1)
+                            pathList.push(stringPath);
                     }
+                    pathIndex++;
 
-                    // Loaded All Files
-                    if (pathIndex >= pathTotal)
+                    var endTimer:Number = getTimer();
+                    if (endTimer - startTimer > 200)
                     {
-                        pathCache.save();
-                        lockUI = false;
-
-                        buildFileList();
-                        return;
-                    }
-
-                    // Not Finished, Continue next frame.
-                    if (isDelay && pathIndex < pathTotal)
-                    {
-                        loadTimer.start();
+                        isDelay = true;
+                        break;
                     }
                 }
 
-                loadTimer.start();
+                // Loaded All Files
+                if (pathIndex >= pathTotal)
+                {
+                    loadTimer.removeEventListener(TimerEvent.TIMER_COMPLETE, e_parseTimer);
+                    pathCache.save();
+                    lockUI = false;
+
+                    buildFileList();
+                    return;
+                }
+
+                // Not Finished, Continue next frame.
+                if (isDelay && pathIndex < pathTotal)
+                {
+                    loadTimer.start();
+                }
             }
         }
 
@@ -395,7 +480,7 @@ package popups
             }
         }
 
-        public function setInfoBox(info:Object):void
+        public function setInfoBox(info:FileFolder):void
         {
             songDetails.removeChildren();
             songDifficulties.length = 0;
@@ -474,7 +559,7 @@ package popups
             }
 
             // Build UI
-            var sources:Array = info.data;
+            var sources:Vector.<FileFolderItem> = info.data;
             for (var s:int = 0; s < sources.length; s++)
             {
                 var charts:Array = sources[s].info.chart;
@@ -531,5 +616,19 @@ package popups
                 }
             }
         }
+    }
+}
+
+import flash.filesystem.File;
+
+internal class FileDirectoryQueue
+{
+    public var dir:File;
+    public var level:int;
+
+    public function FileDirectoryQueue(dir:File, level:int)
+    {
+        this.dir = dir;
+        this.level = level;
     }
 }

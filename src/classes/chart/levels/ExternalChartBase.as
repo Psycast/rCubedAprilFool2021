@@ -14,10 +14,11 @@ package classes.chart.levels
 
     public class ExternalChartBase extends EmbedChartBase
     {
+        public static const VALID_CHART_EXTENSIONS:Array = ["sm", "ssc", "osu"];
+
         private var CHART_BYTES:ByteArray;
         private var AUDIO_BYTES:ByteArray;
 
-        private var parseableExt:Array = ["sm", "ssc", "osu"];
 
         private var fileQueue:Array = [];
 
@@ -83,7 +84,7 @@ package classes.chart.levels
             {
                 for each (var file:File in folder.getDirectoryListing())
                 {
-                    if (parseableExt.indexOf(file.extension.toLowerCase()) != -1)
+                    if (VALID_CHART_EXTENSIONS.indexOf(file.extension.toLowerCase()) != -1)
                     {
                         fileQueue.push(file);
                     }
@@ -92,7 +93,7 @@ package classes.chart.levels
             // Given File, Assume Good
             else
             {
-                if (parseableExt.indexOf(folder.extension.toLowerCase()) != -1)
+                if (VALID_CHART_EXTENSIONS.indexOf(folder.extension.toLowerCase()) != -1)
                 {
                     fileQueue.push(folder);
                 }

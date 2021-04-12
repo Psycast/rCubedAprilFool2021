@@ -1,4 +1,4 @@
-package popups
+package popups.filebrowser
 {
     import af.assets.AFChartDifficultyLargeItem;
     import classes.ui.Text;

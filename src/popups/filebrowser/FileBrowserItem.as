@@ -1,9 +1,10 @@
-package popups
+package popups.filebrowser
 {
     import classes.ui.Text;
     import flash.display.DisplayObjectContainer;
     import flash.display.Sprite;
     import flash.events.MouseEvent;
+    import popups.filebrowser.FileFolder;
 
     public class FileBrowserItem extends Sprite
     {
@@ -16,7 +17,7 @@ package popups
         /** Marks the Button as in-use to avoid removal in song selector. */
         public var garbageSweep:Boolean = false;
 
-        public var songData:Object;
+        public var songData:FileFolder;
 
         private var _over:Boolean = false;
         private var _highlight:Boolean = false;
@@ -63,7 +64,7 @@ package popups
         // public methods
         ///////////////////////////////////
 
-        public function setData(songData:Object):void
+        public function setData(songData:FileFolder):void
         {
             this.songData = songData;
             _lblSongName.text = "[" + songData.author + "] " + songData.name;
