@@ -10,11 +10,13 @@ package popups.filebrowser
         public var author:String;
         public var name:String;
         public var banner:String;
+        public var ext:String;
 
-        public function FileFolder(folder:String, file:String, item:FileFolderItem)
+        public function FileFolder(folder:String, file:String, ext:String, item:FileFolderItem)
         {
             this.folder = folder;
             this.file = file;
+            this.ext = ext;
             this.data = new <FileFolderItem>[item];
         }
     }

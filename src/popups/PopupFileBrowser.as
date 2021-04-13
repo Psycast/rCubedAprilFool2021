@@ -179,21 +179,21 @@ package popups
                 cacheValue = pathCache.getValue(pathList[i]);
                 path = pathList[i];
                 endOfFolder = path.lastIndexOf(File.separator) + 1;
-                renderList[i] = new FileFolder(path.substr(0, endOfFolder), path.substr(endOfFolder), new FileFolderItem(pathList[i], cacheValue));
+                renderList[i] = new FileFolder(path.substr(0, endOfFolder), path.substr(endOfFolder), cacheValue["ext"], new FileFolderItem(pathList[i], cacheValue));
             }
 
             // Folder Merging
             var elm1:FileFolder;
             var elm2:FileFolder;
             var n:int;
-            renderList.sortOn(["folder"], [Array.CASEINSENSITIVE]);
+            renderList.sortOn(["folder", "ext"], [Array.CASEINSENSITIVE, Array.CASEINSENSITIVE]);
             for (i = 0; i < arLen - 1; i++)
             {
                 elm1 = renderList[i];
                 for (n = i + 1; n < arLen; n++)
                 {
                     elm2 = renderList[n];
-                    if (elm1.folder == elm2.folder)
+                    if (elm1.folder == elm2.folder && elm1.ext == elm2.ext)
                     {
                         while (elm2.data.length > 0)
                             elm1.data.push(elm2.data.pop());
@@ -420,6 +420,7 @@ package popups
                                     "difficulty": chartData['difficulty'],
                                     "music": chartData['music'],
                                     "banner": chartData['banner'],
+                                    "ext": chartData['ext'],
                                     "chart": []}
 
                             for (var i:int = 0; i < chartCharts.length; i++)
