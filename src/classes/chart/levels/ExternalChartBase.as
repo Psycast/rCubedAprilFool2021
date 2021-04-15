@@ -2,6 +2,7 @@ package classes.chart.levels
 {
     import classes.chart.parse.ChartBase;
     import classes.chart.parse.ChartOSU;
+    import classes.chart.parse.ChartQuaver;
     import classes.chart.parse.ChartSSC;
     import classes.chart.parse.ChartStepmania;
     import flash.events.ErrorEvent;
@@ -14,11 +15,10 @@ package classes.chart.levels
 
     public class ExternalChartBase extends EmbedChartBase
     {
-        public static const VALID_CHART_EXTENSIONS:Array = ["sm", "ssc", "osu"];
+        public static const VALID_CHART_EXTENSIONS:Array = ["sm", "ssc", "osu", "qua"];
 
         private var CHART_BYTES:ByteArray;
         private var AUDIO_BYTES:ByteArray;
-
 
         private var fileQueue:Array = [];
 
@@ -157,6 +157,9 @@ package classes.chart.levels
 
                 case "osu":
                     return new ChartOSU();
+
+                case "qua":
+                    return new ChartQuaver();
             }
 
             return null;

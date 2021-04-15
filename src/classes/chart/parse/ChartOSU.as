@@ -22,7 +22,7 @@ package classes.chart.parse
 
                 var bufflines:Array = buff.split("\n");
 
-                var collections:Object = {};
+                collections = {};
 
                 // Read File Basic
                 var line:String;
