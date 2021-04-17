@@ -5,13 +5,15 @@ package classes.chart.parse
 
     /**
      * Quaver actually just uses a standard YAML serializion format.
-     * Flash doesn't have one of those, and the only one I found made the game just close.
-     * I really don't know why, but I glued this together, but it really should be made proper.
+     * Flash doesn't have one of those, and the only one I found made the game just crash.
+     * It's good enough for Quaver Files unless it does some really crazy things.
      */
     public class ChartQuaver extends ChartBase
     {
         public var COLORS:Object = {"4": ["white", "blue", "blue", "white"],
                 "7": ["white", "blue", "white", "red", "white", "blue", "white"]};
+
+        public var ARRAY_TOKEN:Array = ['- ', '  '];
 
         private var collections:Object;
 
@@ -27,116 +29,147 @@ package classes.chart.parse
 
                 collections = {};
 
-                var bucket:Object;
+                // Advanced File Basic
+                var buckets:Array = [collections];
+                var bucket_keys:Array = [null];
+                var bucket_depths:Array = [0];
+                var bucket_depth:int = 0;
+                var bucket_last_depth:int = 0;
 
-                // Read File Basic
                 var line:String;
                 var collection_key:String;
 
-                var inArray:Boolean = false;
+                var key:String;
+                var val:*;
+                var keyToken:String;
+
+                var stackBucket:Object;
+                var stackBucketKey:String;
 
                 for (var l:int = 0; l < bufflines.length; l++)
                 {
                     line = bufflines[l];
 
+                    bucket_depth = 0;
+
                     var splitIndex:int = line.indexOf(":");
+                    var startArrayItem:Boolean = false;
 
-                    var key:String = line.substr(0, splitIndex);
-                    var val:String = StringUtil.trim(line.substr(splitIndex + 1));
-                    var keyToken:String = key.substr(0, 2);
+                    key = line.substr(0, splitIndex);
+                    val = parseValue(StringUtil.trim(line.substr(splitIndex + 1)));
+                    keyToken = key.substr(0, 2);
 
+                    // Empty Line
                     if (line.length == 0 || splitIndex < 0)
                         continue;
 
-                    // Check Array Exit
-                    if (inArray)
+                    // Bucket Depth
+                    if (ARRAY_TOKEN.indexOf(keyToken) >= 0)
                     {
-                        if (keyToken != "- " && keyToken != "  ")
+                        startArrayItem ||= (keyToken.indexOf("-") >= 0);
+                        while (true)
                         {
-                            inArray = false;
-                            if (bucket != null)
-                            {
-                                collections[collection_key].push(bucket);
-                                bucket = null;
-                                collection_key = null;
-                            }
-                        }
-                    }
+                            key = key.substr(2);
+                            keyToken = key.substr(0, 2);
+                            bucket_depth++;
 
-                    function parseValue(val:String):*
-                    {
-                        if (val == "[]")
-                            return [];
+                            startArrayItem ||= (keyToken.indexOf("-") >= 0);
 
-                        else if (val == "''")
-                            return '';
-
-                        return val;
-                    }
-
-                    // Array Start
-                    if (val == "")
-                    {
-                        var nextLineToken:String = bufflines[l + 1].substr(0, 2);
-                        if (nextLineToken == "  " || nextLineToken == "- ")
-                        {
-                            inArray = true;
-                            collection_key = key;
-                            collections[key] = [];
-                        }
-                        continue;
-                    }
-
-                    // Array Builder
-                    if (inArray)
-                    {
-                        key = key.substr(2);
-
-                        var indentCheck:String = key.substr(0, 2);
-                        if (indentCheck == "- " || indentCheck == "  ")
-                        {
-                            // De-dent
-                            while (true)
-                            {
-
-                                keyToken = indentCheck;
-                                key = key.substr(2);
-                                indentCheck = key.substr(0, 2);
-
-                                if (indentCheck != "- " && indentCheck != "  ")
-                                    break;
-                            }
-                        }
-
-                        // Remove Token
-                        switch (keyToken)
-                        {
-                            case "- ":
-                                if (bucket != null)
-                                {
-                                    collections[collection_key].push(bucket);
-                                }
-                                bucket = {};
-                                bucket[key] = parseValue(val);
-                                break;
-
-                            case "  ":
-                                bucket[key] = parseValue(val);
+                            if (ARRAY_TOKEN.indexOf(keyToken) < 0)
                                 break;
                         }
+                    }
+
+                    // New Array Item at the same depth.
+                    if (startArrayItem && bucket_depth == bucket_last_depth)
+                    {
+                        stackBucket = buckets.pop();
+                        stackBucketKey = bucket_keys.pop();
+                        bucket_depths.pop();
+
+                        if (stackBucketKey == null)
+                            buckets[buckets.length - 1].push(stackBucket);
+                    }
+
+                    // Depth changed, close up open buckets.
+                    if (bucket_depth < bucket_last_depth)
+                    {
+                        var returnDepth:Number = bucket_depths.pop();
+                        while (returnDepth >= bucket_depth)
+                        {
+                            stackBucket = buckets.pop();
+                            stackBucketKey = bucket_keys.pop();
+
+                            // Either Object or Array, no key means array.
+                            if (stackBucketKey == null)
+                                buckets[buckets.length - 1].push(stackBucket);
+                            else
+                                buckets[buckets.length - 1][stackBucketKey] = stackBucket;
+
+                            // Don't empty the buffer, the main collection resides at 0.
+                            if (bucket_depths.length <= 1)
+                                break;
+
+                            returnDepth = bucket_depths.pop();
+                        }
+                    }
+
+                    // Start New Object
+                    if (startArrayItem)
+                    {
+                        buckets[buckets.length] = {};
+                        bucket_keys[bucket_keys.length] = null;
+                        bucket_depths[bucket_depths.length] = bucket_depth;
+                    }
+
+                    // New Array
+                    if (val == null)
+                    {
+                        buckets[buckets.length] = [];
+                        bucket_keys[bucket_keys.length] = key;
+                        bucket_depths[bucket_depths.length] = bucket_depth;
                     }
                     else
                     {
-                        collection_key = null;
-                        collections[key] = parseValue(val);
-                        continue;
+                        buckets[buckets.length - 1][key] = val;
                     }
+
+                    // Save Last State
+                    bucket_last_depth = bucket_depth;
                 }
 
-                // Remaing item in bucket.
-                if (bucket != null)
+                // Collapse Remaining Buckets
+                while (buckets.length > 1)
                 {
-                    collections[collection_key].push(bucket);
+                    stackBucket = buckets.pop();
+                    stackBucketKey = bucket_keys.pop();
+
+                    // Either Object or Array, no key means array.
+                    if (stackBucketKey == null)
+                        buckets[buckets.length - 1].push(stackBucket);
+                    else
+                        buckets[buckets.length - 1][stackBucketKey] = stackBucket;
+                }
+
+                function parseValue(val:String):*
+                {
+                    if (val == "" || val.length == 0)
+                        return null;
+
+                    if (val == "[]")
+                        return [];
+
+                    else if (val == "''")
+                        return '';
+
+                    else if (val.charAt(0) == "'")
+                        return val.substr(1, val.length - 2);
+
+                    // Has quote escape characters, maintains \\ as well.
+                    else if (val.charAt(0) == '"')
+                        return val.substr(1, val.length - 2).replace(/\\\\/gm, "!---slash-replace---!").replace(/\\/gm, "").replace(/!---slash-replace---!/gm, "\\");
+
+                    return val;
                 }
 
                 // Build data
@@ -151,7 +184,6 @@ package classes.chart.parse
                 data['title'] = collections["Title"];
                 data['artist'] = collections["Artist"];
                 data['stepauthor'] = collections["Creator"];
-                data['difficulty'] = 0; // Quaver calculates this on load, is not saved.
                 data['banner'] = collections["BackgroundFile"];
 
                 // Build NoteMap Object
@@ -181,11 +213,22 @@ package classes.chart.parse
                     noteArray[noteArray.length] = noteEntry;
                 }
 
+                // No Notes in the file.
+                if (noteArray.length <= 0)
+                {
+                    trace("QUA: Invalid: [No Notes]");
+                    return false;
+                }
+
+                // Calculate some Difficulty, just so we can "sort" charts.
+                // jk, just use NPS including LNs. (Make LN maps appear harder)
+                data['difficulty'] = Math.round((noteArray.length + noteHoldArray.length) / (noteArray[noteArray.length - 1][0]));
+
                 // Fill Chart Data
                 var noteArrayObject:Object = {"class": collections["DifficultyName"],
-                        "class_color": "Hard", //collections["DifficultyName"],
-                        "desc": "",
-                        "difficulty": 0,
+                        "class_color": getDifficultyClass(data['difficulty']), //collections["DifficultyName"],
+                        "desc": collections["Description"],
+                        "difficulty": data['difficulty'],
                         "arrows": noteArray.length,
                         "holds": noteHoldArray.length,
                         "mines": 0,
@@ -231,6 +274,22 @@ package classes.chart.parse
             }
 
             return 0;
+        }
+
+        private function getDifficultyClass(val:Number):String
+        {
+            if (val >= 14)
+                return "Edit";
+            if (val >= 11)
+                return "Challenge";
+            if (val >= 9)
+                return "Hard";
+            if (val >= 6.5)
+                return "Medium";
+            if (val >= 3.5)
+                return "Easy";
+
+            return "Beginner";
         }
     }
 }
