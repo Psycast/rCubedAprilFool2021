@@ -5,7 +5,9 @@ package classes.chart.levels
 
     public class ExternalChartCache
     {
-        private var CACHE:Object = {};
+        private static const CACHE_VERSION:int = 2;
+
+        private var CACHE:Object = {"cache_version": CACHE_VERSION};
         private var cacheFileName:String = "chart_cache.json"; // "song_cache" + File.separator + 
 
         private var didLoad:Boolean = false;
@@ -21,12 +23,17 @@ package classes.chart.levels
             if (didLoad)
                 return;
 
+            didLoad = true;
+
             var data:String = AirContext.readTextFile(AirContext.getAppFile(cacheFileName));
             try
             {
-                CACHE = JSON.parse(data);
-                didLoad = true;
-                isDirty = false;
+                var FILE_CACHE:Object = JSON.parse(data);
+
+                // valid cache & version
+                if ((FILE_CACHE["cache_version"] || 0) == CACHE_VERSION)
+                    CACHE = FILE_CACHE;
+
                 trace("loaded cache");
             }
             catch (e:Error)
