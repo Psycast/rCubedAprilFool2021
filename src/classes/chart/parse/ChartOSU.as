@@ -145,6 +145,13 @@ package classes.chart.parse
                     noteArray[noteArray.length] = noteEntry;
                 }
 
+                // No Notes in the file.
+                if (noteArray.length <= 0)
+                {
+                    trace("OSU: Invalid: [No Notes]");
+                    return false;
+                }
+
                 var noteArrayObject:Object = {"class": collections["Metadata"]["Version"],
                         "class_color": getDifficultyClass(parseFloat(collections["Difficulty"]["OverallDifficulty"])),
                         "desc": "",
@@ -178,6 +185,8 @@ package classes.chart.parse
 
         private function getDifficultyClass(val:Number):String
         {
+            if (val >= 9)
+                return "Edit";
             if (val >= 7)
                 return "Challenge";
             if (val >= 5)

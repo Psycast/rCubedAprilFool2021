@@ -236,7 +236,7 @@ package classes.chart.parse
          */
         private function parseNoteData(chartData:Object):Object
         {
-            var t:Number = getTimer();
+            //var t:Number = getTimer();
 
             var columnCount:int = chartData['type'];
             var columnMap:Array = COLUMNS[chartData['type']] || [];
@@ -342,11 +342,6 @@ package classes.chart.parse
                             {
                                 if (noteStr == "2" || noteStr == "4")
                                     pre_holds[column] = pre_notes.length;
-
-                                // doesn't take into account measures greater than 192 or measures not on 4/4 timing
-                                // which will throw off colors in those cases
-                                // $noteColorIndex = ($currentNoteBar * (192/$barsPerMeasure)) % 48;
-                                // $noteColor = $this->_note_colors[$noteColorIndex];
 
                                 var noteColor:String = noteTypeToColor(getNoteType(currentNoteBar * (ROWS_PER_MEASURE / barsPerMeasure)));
 
@@ -464,7 +459,7 @@ package classes.chart.parse
                 return chartTimes[chart_index];
 
             // Calculate
-            var t:Number = getTimer();
+            //var t:Number = getTimer();
 
             var chartData:Object = data['notes'][chart_index];
 
@@ -716,7 +711,7 @@ internal class ChartObject
     public var dir:String;
     public var tail:Number;
 
-    public function ChartObject(time:Number, dir:String, color:String = "blue")
+    public function ChartObject(time:Number, dir:String, color:String = null)
     {
         this.time = time;
         this.dir = dir;
