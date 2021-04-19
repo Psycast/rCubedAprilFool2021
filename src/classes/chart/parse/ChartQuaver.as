@@ -75,9 +75,15 @@ package classes.chart.parse
                     return false;
                 }
 
+                // Determine File Time
+                var maxChartTime:Number = noteArray[noteArray.length - 1][0];
+                if (noteHoldArray.length > 0)
+                    for (var i:int = noteHoldArray.length - 1; i >= 0; i--)
+                        maxChartTime = Math.max(maxChartTime, noteHoldArray[i][0] + noteHoldArray[i][3]);
+
                 // Calculate some Difficulty, just so we can "sort" charts.
-                data['nps'] = Math.round((noteArray.length + noteHoldArray.length) / (noteArray[noteArray.length - 1][0]));
-                data['difficulty'] = data['nps'];
+                data['nps'] = ((noteArray.length + noteHoldArray.length) / maxChartTime);
+                data['difficulty'] = Math.round(data['nps']);
 
                 // Fill Chart Data
                 var noteArrayObject:Object = {"class": collections["DifficultyName"],
@@ -89,6 +95,8 @@ package classes.chart.parse
                         "mines": 0,
                         "radar_values": "0,0,0,0,0",
                         "type": columnCount,
+                        "time_sec": maxChartTime,
+                        "nps": data['nps'],
                         "stepauthor": collections["Creator"]};
 
                 var chartArrayObject:Object = {"columns": columnCount,

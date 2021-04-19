@@ -99,7 +99,7 @@ package classes.chart.levels
 
             if (hd.length > 0)
                 for (var i:int = hd.length - 1; i >= 0; i--)
-                    Math.max(maxTime, hd[i][0] + hd[i][3]);
+                    maxTime = Math.max(maxTime, hd[i][0] + hd[i][3]);
 
             if (md.length > 0)
                 maxTime = Math.max(maxTime, md[md.length - 1][0]);

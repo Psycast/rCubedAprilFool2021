@@ -152,6 +152,14 @@ package classes.chart.parse
                     return false;
                 }
 
+                // Determine File Time
+                var maxChartTime:Number = noteArray[noteArray.length - 1][0];
+                if (noteHoldArray.length > 0)
+                    for (var i:int = noteHoldArray.length - 1; i >= 0; i--)
+                        maxChartTime = Math.max(maxChartTime, noteHoldArray[i][0] + noteHoldArray[i][3]);
+
+                data['nps'] = ((noteArray.length + noteHoldArray.length) / maxChartTime);
+
                 var noteArrayObject:Object = {"class": collections["Metadata"]["Version"],
                         "class_color": getDifficultyClass(parseFloat(collections["Difficulty"]["OverallDifficulty"])),
                         "desc": "",
@@ -161,6 +169,8 @@ package classes.chart.parse
                         "mines": 0,
                         "radar_values": "0,0,0,0,0",
                         "type": columnCount,
+                        "time_sec": maxChartTime,
+                        "nps": data['nps'],
                         "stepauthor": collections["Metadata"]["Creator"]};
 
                 var chartArrayObject:Object = {"columns": columnCount,

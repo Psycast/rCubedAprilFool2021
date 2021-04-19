@@ -42,8 +42,6 @@ package classes.chart.parse
             'samplestart',
             'samplelength'];
 
-        private var chartTimes:Object = {};
-
         private var bpms:Array = [];
         private var stops:Array = [];
 
@@ -79,6 +77,7 @@ package classes.chart.parse
                 }
 
                 // Build Data Structure
+                var notes:Object;
                 for each (var match:Array in matches)
                 {
                     if (fields_array.indexOf(match[0]) <= -1)
@@ -93,7 +92,7 @@ package classes.chart.parse
                             break;
 
                         case 'notes':
-                            var notes:Object = {};
+                            notes = {};
 
                             var notesValues:Array = match[1].split(":");
                             for (var i:int = 0; i < notesValues.length; i++)
@@ -143,8 +142,6 @@ package classes.chart.parse
                     }
                 }
 
-                data['stepauthor'] = data['credit'];
-
                 // Setup BPMS
                 this.bpms = this.data['bpms'] || [];
                 this.bpms.sort(keyPairSort);
@@ -155,6 +152,17 @@ package classes.chart.parse
                 // Setup Stops
                 this.stops = this.data['stops'] || this.data['freezes'] || [];
                 this.stops.sort(keyPairSort);
+
+                // Finalize Charts
+                for (var chart:int = 0; chart < data["notes"].length; chart++)
+                {
+                    notes = data["notes"][chart];
+                    notes['time_sec'] = getChartTimeFast(chart);
+                    notes['nps'] = ((notes['arrows'] + notes['holds']) / (notes['time_sec']));
+                }
+
+                data['stepauthor'] = data['credit'];
+
             }
             catch (e:Error)
             {
@@ -411,8 +419,8 @@ package classes.chart.parse
         override public function getChartTimeFast(chart_index:Object = null):Number
         {
             // Cached Time
-            if (chartTimes[chart_index] != null)
-                return chartTimes[chart_index];
+            if (data['notes'][chart_index]['time_sec'] != null)
+                return data['notes'][chart_index]['time_sec'];
 
             // Calculate
             //var t:Number = getTimer();
@@ -452,9 +460,6 @@ package classes.chart.parse
 
             // MS -> Seconds
             currentTime /= 1000;
-
-            // Cache
-            chartTimes[chart_index] = currentTime;
 
             //trace("time parsed in", (getTimer() - t), currentTime);
 

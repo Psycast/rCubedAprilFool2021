@@ -25,8 +25,6 @@ package classes.chart.parse
             'version',
             'meter'];
 
-        private var chartTimes:Object = {};
-
         override public function load(fileData:ByteArray):Boolean
         {
             try
@@ -161,9 +159,7 @@ package classes.chart.parse
                     }
                 }
 
-                // Match Stepmania Variables
-                data['stepauthor'] = data['credit'];
-
+                // Finalize Charts
                 for (chart = 0; chart < data["notes"].length; chart++)
                 {
                     var notes:Object = data["notes"][chart];
@@ -174,6 +170,8 @@ package classes.chart.parse
                     notes['class_color'] = notes['difficulty'] || "Easy"; // Beginner, Easy, Medium, Hard, Challenge, ...Edit?
                     notes['difficulty'] = notes['meter'] || 1; // [0-9]+
                     notes['radar_values'] = notes['radarvalues'] || ""; // 0.000,0.000,0.000,0.000,0.000
+                    notes['time_sec'] = getChartTimeFast(chart);
+                    notes['nps'] = ((notes['arrows'] + notes['holds']) / (notes['time_sec']));
 
                     if (notes['credit'] != null)
                     {
@@ -190,6 +188,9 @@ package classes.chart.parse
                         data["notes"].removeAt(chart);
                     }
                 }
+
+                // Match Stepmania Variables
+                data['stepauthor'] = data['credit'];
             }
             catch (e:Error)
             {
@@ -455,8 +456,8 @@ package classes.chart.parse
         override public function getChartTimeFast(chart_index:Object = null):Number
         {
             // Cached Time
-            if (chartTimes[chart_index] != null)
-                return chartTimes[chart_index];
+            if (data['notes'][chart_index]['time_sec'] != null)
+                return data['notes'][chart_index]['time_sec'];
 
             // Calculate
             //var t:Number = getTimer();
@@ -511,9 +512,6 @@ package classes.chart.parse
 
             // MS -> Seconds
             currentTime /= 1000;
-
-            // Cache
-            chartTimes[chart_index] = currentTime;
 
             //trace("time parsed in", (getTimer() - t), currentTime);
 

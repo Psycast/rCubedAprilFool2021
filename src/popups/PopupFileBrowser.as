@@ -432,6 +432,8 @@ package popups
                                         "difficulty": difficultyData['difficulty'],
                                         "type": difficultyData['type'],
                                         "radar_values": difficultyData['radar_values'],
+                                        "time_sec": Number(difficultyData['time_sec'].toFixed(2)),
+                                        "nps": Number(difficultyData['nps'].toFixed(2)),
                                         "arrows": difficultyData['arrows'],
                                         "holds": difficultyData['holds'],
                                         "mines": difficultyData['mines']};
