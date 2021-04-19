@@ -5,7 +5,12 @@ package classes.chart.parse
 
     public class ChartOSU extends ChartBase
     {
-        public var COLORS:Object = ["white", "pink", "pink", "white"];
+        public var COLORS:Object = {"4": ["white", "pink", "pink", "white"],
+                "5": ["white", "pink", "purple", "pink", "white"],
+                "6": ["white", "pink", "white", "white", "pink", "white"],
+                "7": ["white", "pink", "white", "purple", "white", "pink", "white"],
+                "8": ["white", "pink", "pink", "white", "white", "pink", "pink", "white"],
+                "9": ["white", "pink", "pink", "white", "purple", "white", "pink", "pink", "white"]};
 
         private static const COLLECT_ARRAY_TYPES:Array = ["Events", "TimingPoints", "HitObjects"];
         private static const COLLECT_KEY_TYPES:Array = ["General", "Editor", "Metadata", "Difficulty"];
@@ -119,19 +124,19 @@ package classes.chart.parse
 
                 // Build NoteMap Object
                 var columnWidth:Number = 512 / columnCount;
-                var arcCollection:Array = collections["HitObjects"];
+                var noteCollection:Array = collections["HitObjects"];
                 var noteArray:Array = [];
                 var noteHoldArray:Array = [];
                 var noteEntry:Array;
                 var collectionEntry:Array;
-                for (l = 0; l < arcCollection.length; l++)
+                for (l = 0; l < noteCollection.length; l++)
                 {
-                    collectionEntry = arcCollection[l];
+                    collectionEntry = noteCollection[l];
 
                     var noteType:int = parseInt(collectionEntry[3]);
                     var column:int = (Math.max(0, Math.min(columnCount, Math.floor(parseInt(collectionEntry[0]) / columnWidth))));
 
-                    noteEntry = [(parseFloat(collectionEntry[2]) / 1000), COLUMNS[columnCount][column], COLORS[column % 4]];
+                    noteEntry = [(parseFloat(collectionEntry[2]) / 1000), COLUMNS[columnCount][column], COLORS[columnCount][column]];
 
                     // Held Note
                     if ((noteType & 128) != 0)

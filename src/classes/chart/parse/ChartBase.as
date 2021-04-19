@@ -9,7 +9,7 @@ package classes.chart.parse
 
         public var validColumnCounts:Array = [4, 5, 6, 7, 8, 9, 10];
 
-        public var COLUMNS:Object = {"4": ['L', 'D', 'U', 'R'],
+        public static var COLUMNS:Object = {"4": ['L', 'D', 'U', 'R'],
                 "5": ['L', 'D', 'C', 'U', 'R'],
                 "6": ['L', 'Q', 'D', 'U', 'W', 'R'],
                 "7": ['L', 'Q', 'D', 'C', 'U', 'W', 'R'],

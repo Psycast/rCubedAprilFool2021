@@ -55,8 +55,12 @@ package game.controls
         private var updateBaseOffsetRef:Number;
 
         private var receptorRotations:Object = {4: [90, 0, 180, 270],
+                5: [90, 0, 0, 180, 270],
                 6: [90, 135, 0, 180, 225, 270],
-                8: [90, 0, 180, 270, 90, 0, 180, 270]};
+                7: [90, 135, 0, 0, 180, 225, 270],
+                8: [90, 0, 180, 270, 90, 0, 180, 270],
+                9: [90, 0, 180, 270, 0, 90, 0, 180, 270],
+                10: [90, 0, 0, 180, 270, 90, 0, 0, 180, 270]};
 
         public function NoteBox(song:Song, options:GameOptions)
         {
@@ -872,6 +876,7 @@ package game.controls
             var noteScale:Number = options.noteScale;
 
             var splitGap:int = options.receptorSplitSpacing * (gap < 0 ? -1 : 1);
+            var handSplitDivider:Number = int((columnCount / 2));
 
             var recp:MovieClip;
             var startPos:int;
@@ -905,8 +910,10 @@ package game.controls
                         recp.x = startPos + (gap * i);
                         recp.y = 400;
 
-                        if (i < (columnCount / 2))
+                        if (i < handSplitDivider)
                             recp.x -= splitGap;
+                        else if (i == handSplitDivider && ((columnCount & 1) != 0))
+                            recp.x -= 0;
                         else
                             recp.x += splitGap;
 
@@ -928,11 +935,12 @@ package game.controls
                         recp.x = startPos + (gap * i);
                         recp.y = 90;
 
-                        if (i < (columnCount / 2))
+                        if (i < handSplitDivider)
                             recp.x -= splitGap;
+                        else if (i == handSplitDivider && ((columnCount & 1) != 0))
+                            recp.x -= 0;
                         else
                             recp.x += splitGap;
-
 
                         if (hasRotation)
                             recp.rotation = receptorRotations[columnCount][i];

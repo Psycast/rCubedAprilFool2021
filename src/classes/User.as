@@ -110,11 +110,19 @@ package classes
         public var enableFailure:Boolean = false;
 
         public var keyBuilder:Array = [{4: [Keyboard.LEFT, Keyboard.DOWN, Keyboard.UP, Keyboard.RIGHT],
+                5: [Keyboard.A, Keyboard.S, Keyboard.SPACE, Keyboard.K, Keyboard.L],
                 6: [Keyboard.A, Keyboard.S, Keyboard.D, Keyboard.J, Keyboard.K, Keyboard.L],
-                8: [Keyboard.A, Keyboard.S, Keyboard.D, Keyboard.F, Keyboard.H, Keyboard.J, Keyboard.K, Keyboard.L]},
+                7: [Keyboard.A, Keyboard.S, Keyboard.D, Keyboard.SPACE, Keyboard.J, Keyboard.K, Keyboard.L],
+                8: [Keyboard.A, Keyboard.S, Keyboard.D, Keyboard.F, Keyboard.H, Keyboard.J, Keyboard.K, Keyboard.L],
+                9: [Keyboard.A, Keyboard.S, Keyboard.D, Keyboard.F, Keyboard.G, Keyboard.H, Keyboard.J, Keyboard.K, Keyboard.L],
+                10: [Keyboard.Q, Keyboard.W, Keyboard.E, Keyboard.R, Keyboard.T, Keyboard.Y, Keyboard.U, Keyboard.I, Keyboard.O, Keyboard.P]},
             {4: [0, 0, 0, 0],
+                5: [0, 0, 0, 0, 0],
                 6: [0, 0, 0, 0, 0, 0],
-                8: [0, 0, 0, 0, 0, 0, 0, 0]}];
+                7: [0, 0, 0, 0, 0, 0, 0],
+                8: [0, 0, 0, 0, 0, 0, 0, 0],
+                9: [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                10: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}];
 
         public var activeNoteskin:int = 1;
         public var activeMods:Array = [];
@@ -457,7 +465,15 @@ package classes
             // MultiInput
             if (_settings.keyBuilder != null)
             {
-                this.keyBuilder = _settings.keyBuilder;
+                var keyColumn:String;
+                var keyGroups:int = Math.min(keyBuilder.length, _settings.keyBuilder.length);
+                for (i = 0; i < keyGroups; i++)
+                {
+                    for (keyColumn in _settings.keyBuilder[i])
+                    {
+                        this.keyBuilder[i][keyColumn] = _settings.keyBuilder[i][keyColumn];
+                    }
+                }
             }
             // Backup From Old Setup
             else

@@ -17,7 +17,7 @@ package classes
     public class Noteskins extends EventDispatcher
     {
         private static const note_asset_names:Array = ["blue", "red", "yellow", "green", "purple", "pink", "orange", "cyan", "white"];
-        private static const note_direction_names:Array = ['L', 'D', 'U', 'R', 'Q', 'W', 'T', 'Y'];
+        private static const note_direction_names:Array = ['L', 'D', 'C', 'U', 'R', 'Q', 'W', 'V', 'T', 'Y'];
         private static const TYPE_SWF:int = 0;
         private static const TYPE_BITMAP:int = 1;
 

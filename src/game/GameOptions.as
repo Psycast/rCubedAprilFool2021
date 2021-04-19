@@ -1,8 +1,9 @@
 package game
 {
+    import arc.ArcGlobals;
     import classes.User;
     import classes.chart.Song;
-    import arc.ArcGlobals;
+    import classes.chart.parse.ChartBase;
 
     public class GameOptions extends Object
     {
@@ -81,19 +82,7 @@ package game
 
         public function setColumnCount(val:int):void
         {
-            switch (val)
-            {
-                case 8:
-                    noteDirections = ['L', 'D', 'U', 'R', 'Q', 'W', 'T', 'Y'];
-                    break;
-                case 6:
-                    noteDirections = ['L', 'Q', 'D', 'U', 'W', 'R'];
-                    break;
-                default:
-                case 4:
-                    noteDirections = ['L', 'D', 'U', 'R'];
-                    break;
-            }
+            noteDirections = ChartBase.COLUMNS[val] || ChartBase.COLUMNS["4"];
         }
 
         public function fillFromUser(user:User):void
