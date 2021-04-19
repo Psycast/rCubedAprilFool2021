@@ -39,7 +39,12 @@ package classes.chart.parse
                 data['title'] = collections["Title"];
                 data['artist'] = collections["Artist"];
                 data['stepauthor'] = collections["Creator"];
-                data['banner'] = collections["BackgroundFile"];
+
+                if (collections["BackgroundFile"] != null)
+                {
+                    data['banner'] = collections["BackgroundFile"];
+                    data['background'] = collections["BackgroundFile"];
+                }
 
                 // Build NoteMap Object
                 var columnCount:int = standardType(collections["Mode"]);

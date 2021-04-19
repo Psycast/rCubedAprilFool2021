@@ -265,7 +265,7 @@ package game.graph
 
             // Note Information Background
             overlay.graphics.lineStyle(1, 0xffffff, 0.33);
-            overlay.graphics.beginFill(0x033242, 0.95);
+            overlay.graphics.beginFill(0x222222, 0.90);
             overlay.graphics.drawRect(boxX, -32, boxWidth, 30);
         }
 

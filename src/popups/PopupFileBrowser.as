@@ -421,6 +421,7 @@ package popups
                                     "difficulty": chartData['difficulty'],
                                     "music": chartData['music'],
                                     "banner": chartData['banner'],
+                                    "background": chartData['background'],
                                     "ext": chartData['ext'],
                                     "chart": []}
 

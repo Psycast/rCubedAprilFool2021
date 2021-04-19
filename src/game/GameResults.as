@@ -16,20 +16,23 @@ package game
     import com.flashfla.utils.NumberUtil;
     import com.flashfla.utils.TimeUtil;
     import com.flashfla.utils.sprintf;
+    import flash.display.Bitmap;
     import flash.display.DisplayObject;
+    import flash.display.Loader;
+    import flash.display.LoaderInfo;
     import flash.display.Sprite;
     import flash.events.Event;
     import flash.events.IOErrorEvent;
     import flash.events.KeyboardEvent;
     import flash.events.MouseEvent;
     import flash.events.SecurityErrorEvent;
+    import flash.net.URLRequest;
+    import flash.system.LoaderContext;
     import game.graph.GraphAccuracy;
     import game.graph.GraphBase;
     import game.graph.GraphCombo;
     import menu.MenuPanel;
-    import flash.display.BitmapData;
     import scripts.graphs.FakeGraph;
-    import flash.display.Bitmap;
 
     public class GameResults extends MenuPanel
     {
@@ -45,6 +48,8 @@ package game
         private var _lang:Language = Language.instance;
         private var _loader:DynamicURLLoader;
         private var _playlist:Playlist = Playlist.instance;
+
+        public var lc:LoaderContext = new LoaderContext();
 
         // Results
         private var resultsTime:String = TimeUtil.getCurrentDate();
@@ -127,7 +132,7 @@ package game
                 if (userAvatar && userAvatar.height > 0 && userAvatar.width > 0)
                 {
                     userAvatar.x = 616 + ((99 - userAvatar.width) / 2);
-                    userAvatar.y = 114 + ((99 - userAvatar.height) / 2);
+                    userAvatar.y = 143 + ((99 - userAvatar.height) / 2);
                     this.addChild(userAvatar);
                 }
             }
@@ -165,7 +170,6 @@ package game
 
             // Song Results Buttons
             navScreenShot = new BoxIcon(this, 522, 6, 32, 32, new iconPhoto(), eventHandler);
-            navScreenShot.setIconColor("#E2FEFF");
             navScreenShot.setHoverText(_lang.string("game_results_queue_save_screenshot"), "bottom");
 
             // Graph
@@ -249,6 +253,49 @@ package game
             var seconds:Number = Math.floor(song_entry.timeSecs * (1 / result.options.songRate));
             var songLength:String = (Math.floor(seconds / 60)) + ":" + (seconds % 60 >= 10 ? "" : "0") + (seconds % 60);
             var rateString:String = result.options.songRate != 1 ? " [x" + result.options.songRate + "]" : "";
+
+            // Background
+            if (song_entry.background != null && song_entry.background.length > 0)
+            {
+                // Check Extension
+                var backgroundExt:String = song_entry.background.substr(song_entry.background.lastIndexOf(".") + 1).toLowerCase();
+                if (backgroundExt == "jpg" || backgroundExt == "png" || backgroundExt == "gif" || backgroundExt == "jpeg")
+                {
+                    var path:String = "file:///" + song_entry.folder + song_entry.background;
+                    var imageLoader:Loader = new Loader();
+                    imageLoader.contentLoaderInfo.addEventListener(SecurityErrorEvent.SECURITY_ERROR, e_backgroundLoaded);
+                    imageLoader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, e_backgroundLoaded);
+                    imageLoader.contentLoaderInfo.addEventListener(Event.COMPLETE, e_backgroundLoaded);
+                    imageLoader.load(new URLRequest(path), lc);
+
+                    function e_backgroundLoaded(e:Event):void
+                    {
+                        // Position Loaded Banner Image
+                        if (e.type == Event.COMPLETE && e.target != null && ((e.target as LoaderInfo).content) != null)
+                        {
+                            var bmp:Bitmap = ((e.target as LoaderInfo).content) as Bitmap;
+                            bmp.smoothing = true;
+                            bmp.pixelSnapping = "always";
+                            resultsDisplay.addChildAt(bmp, 1);
+                            bmp.alpha = 0.5;
+
+                            var imageScale:Number = 780 / bmp.width;
+
+                            bmp.scaleX = bmp.scaleY = imageScale;
+
+                            if (bmp.height < 480)
+                            {
+                                bmp.scaleX = bmp.scaleY = 1;
+                                imageScale = 480 / bmp.height;
+                                bmp.scaleX = bmp.scaleY = imageScale;
+                                bmp.x = -((bmp.width - 780) / 2);
+                            }
+                            else
+                                bmp.y = -((bmp.height - 480) / 2);
+                        }
+                    }
+                }
+            }
 
             // Song Title
             songTitle = song_entry.name + rateString;

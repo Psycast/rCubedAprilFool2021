@@ -122,6 +122,12 @@ package classes.chart.levels
                     info['time'] = getChartTime(DEFAULT_CHART_ID);
                     info['music'] = parser.data.music || "";
                     info['banner'] = parser.data.banner || "";
+                    info['background'] = parser.data.background || "";
+
+                    // Folder Path
+                    var path:String = firstFile.nativePath;
+                    var endOfFolder:int = path.lastIndexOf(File.separator) + 1;
+                    info['folder'] = path.substr(0, endOfFolder);
 
                     // Music Validation
                     if (parser.data.music.length < 4 || parser.data.music.substr(-3).toLowerCase() != "mp3")

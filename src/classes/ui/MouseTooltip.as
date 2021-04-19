@@ -49,7 +49,7 @@ package classes.ui
                 if (msg.textWidth > 0)
                 {
                     this.graphics.lineStyle(1, 0xffffff, 0.75);
-                    this.graphics.beginFill(GameBackgroundColor.BG_DARK, 0.95);
+                    this.graphics.beginFill(0x222222, 0.90);
                     this.graphics.drawRect(0, 0, msg.width + 10, msg.height + 2);
                     this.graphics.endFill();
                 }

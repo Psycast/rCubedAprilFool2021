@@ -162,7 +162,6 @@ package classes.chart.parse
                 }
 
                 data['stepauthor'] = data['credit'];
-
             }
             catch (e:Error)
             {

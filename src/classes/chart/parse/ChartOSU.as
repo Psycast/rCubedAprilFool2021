@@ -99,7 +99,6 @@ package classes.chart.parse
                 data['stepauthor'] = collections["Metadata"]["Creator"];
                 data['difficulty'] = parseInt(collections["Difficulty"]["OverallDifficulty"]) * 16;
 
-                data['banner'] = '';
                 if (collections["Events"].length > 0)
                 {
                     for each (var event:Object in collections["Events"])
@@ -112,6 +111,7 @@ package classes.chart.parse
                                 filename = filename.substr(1, filename.length - 2);
 
                             data['banner'] = filename;
+                            data['background'] = filename;
                             break;
                         }
                     }
