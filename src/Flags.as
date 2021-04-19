@@ -7,7 +7,7 @@ package
         public static var ANTIMATTER:Boolean = false;
         public static var KEYBOARD_BREAKER:Boolean = false;
 
-        public static var ENABLE_BROWSER:Boolean = false;
+        public static var ENABLE_BROWSER:Boolean = true;
         public static var SEEN_SOLO_CUTSCENE:Boolean = false;
         public static var SETUP_KEYS:Boolean = false;
         public static var CUTSCENE_BITS:int = 0;
@@ -52,7 +52,7 @@ package
 
         public static function resetSecrets():void
         {
-            ENABLE_BROWSER = false;
+            //ENABLE_BROWSER = false;
             ANTIMATTER = false;
             KEYBOARD_BREAKER = false;
         }
