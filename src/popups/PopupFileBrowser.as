@@ -56,6 +56,7 @@ package popups
         private var selectFolder:BoxIcon;
         private var closeWindow:BoxIcon;
 
+        private var lastSelectedItem:FileBrowserItem;
         private var songBrowser:FileBrowserList;
         private var songDetails:Sprite;
         private var songDetailsWidth:Number = 0;
@@ -83,15 +84,15 @@ package popups
             var bgbox:Box = new Box(this, -1, -1, false, false);
             bgbox.setSize(Main.GAME_WIDTH + 2, Main.GAME_HEIGHT + 2);
             bgbox.color = 0x000000;
-            bgbox.normalAlpha = 0.5;
+            bgbox.normalAlpha = 0.7;
             bgbox.activeAlpha = 1;
 
             box = new Box(this, -1, -1, false, false);
             box.setSize(Main.GAME_WIDTH + 2, Main.GAME_HEIGHT + 2);
-            box.activeAlpha = 0.4;
+            box.activeAlpha = 0.5;
 
             dividers = new Sprite();
-            dividers.graphics.lineStyle(1, 0xffffff, 0.35);
+            dividers.graphics.lineStyle(1, 0xFFFFFF, 0.35);
             box.addChild(dividers);
 
             // Top Bar Item
@@ -479,7 +480,18 @@ package popups
             if (e.target is FileBrowserItem)
             {
                 var item:FileBrowserItem = e.target as FileBrowserItem;
+
+                if (lastSelectedItem != null)
+                {
+                    if (lastSelectedItem == item)
+                        return;
+
+                    lastSelectedItem.highlight = false;
+                }
+
+                item.highlight = true;
                 setInfoBox(item.songData);
+                lastSelectedItem = item;
             }
         }
 
