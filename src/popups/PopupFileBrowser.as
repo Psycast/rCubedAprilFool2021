@@ -7,6 +7,7 @@ package popups
     import classes.chart.levels.ExternalChartBase;
     import classes.chart.levels.ExternalChartCache;
     import classes.ui.Box;
+    import classes.ui.BoxButton;
     import classes.ui.BoxIcon;
     import classes.ui.Text;
     import flash.display.Bitmap;
@@ -30,9 +31,9 @@ package popups
     import menu.MenuSongSelection;
     import popups.filebrowser.FileBrowserDifficultyItem;
     import popups.filebrowser.FileBrowserItem;
-    import popups.filebrowser.FileFolderItem;
-    import popups.filebrowser.FileFolder;
     import popups.filebrowser.FileBrowserList;
+    import popups.filebrowser.FileFolder;
+    import popups.filebrowser.FileFolderItem;
 
     public class PopupFileBrowser extends MenuPanel
     {
@@ -67,6 +68,8 @@ package popups
         private var loadingPathIndex:Text;
         private var loadingPathFolder:Text;
         private var loadingPathSong:Text;
+        private var loadingCancelButton:BoxButton;
+        private var cancelRequested:Boolean = false;
 
         public function PopupFileBrowser(myParent:MenuPanel)
         {
@@ -138,15 +141,17 @@ package popups
             uiLock.graphics.drawRect(0, 0, 780, 480);
             uiLock.graphics.endFill();
 
-            var lockUIText:Text = new Text(uiLock, 0, 0, "Loading Files", 24);
-            lockUIText.setAreaParams(780, 480, "center");
+            var lockUIText:Text = new Text(uiLock, 0, 200, "Loading Files", 24);
+            lockUIText.setAreaParams(780, 30, "center");
 
-            loadingPathIndex = new Text(uiLock, 0, 380, "", 20);
+            loadingPathIndex = new Text(uiLock, 0, 340, "", 20);
             loadingPathIndex.setAreaParams(780, 30, "center");
-            loadingPathFolder = new Text(uiLock, 0, 411, "", 22);
+            loadingPathFolder = new Text(uiLock, 0, 371, "", 22);
             loadingPathFolder.setAreaParams(780, 30, "center");
-            loadingPathSong = new Text(uiLock, 0, 440, "", 18);
+            loadingPathSong = new Text(uiLock, 0, 400, "", 18);
             loadingPathSong.setAreaParams(780, 30, "center");
+
+            loadingCancelButton = new BoxButton(uiLock, 390 - 40, 440, 80, 30, "CANCEL", 12, clickHandler);
 
             if (rootFolder != null && pathList == null)
                 refreshFolder();
@@ -250,6 +255,10 @@ package popups
                 tempFolder.addEventListener(Event.SELECT, dirSelected);
                 tempFolder.browseForDirectory("Select a directory");
             }
+            if (e.target == loadingCancelButton)
+            {
+                cancelRequested = true;
+            }
             //- Close
             if (e.target == closeWindow)
             {
@@ -285,7 +294,7 @@ package popups
 
             function e_startFileSearch():void
             {
-                loadingPathIndex.text = "...Searching...";
+                loadingPathIndex.text = "Scanning";
                 loadingPathFolder.text = '';
                 loadingPathSong.text = '';
 
@@ -338,6 +347,13 @@ package popups
                         isDelay = true;
                         break;
                     }
+                }
+
+                if (cancelRequested)
+                {
+                    dirQueue.length = 0;
+                    fileQueue.length = 0;
+                    pathList.length = 0;
                 }
 
                 loadingPathIndex.text = "Found: " + fileQueue.length;
@@ -458,6 +474,15 @@ package popups
                     }
                     pathIndex++;
 
+                    if (cancelRequested)
+                    {
+                        pathIndex = 0;
+                        pathTotal = 0;
+                        dirQueue.length = 0;
+                        fileQueue.length = 0;
+                        pathList.length = 0;
+                    }
+
                     var endTimer:Number = getTimer();
                     if (endTimer - startTimer > 200)
                     {
@@ -491,12 +516,7 @@ package popups
                 return;
 
             if (lastSelectedItem != null)
-            {
-                if (lastSelectedItem == item)
-                    return;
-
                 lastSelectedItem.highlight = false;
-            }
 
             item.highlight = true;
             setInfoBox(item.songData);
@@ -637,6 +657,7 @@ package popups
 
         public function set lockUI(val:Boolean):void
         {
+            cancelRequested = false;
             if (val)
             {
                 this.addChild(uiLock);
