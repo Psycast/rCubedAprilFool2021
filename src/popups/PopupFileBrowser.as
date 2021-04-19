@@ -42,6 +42,7 @@ package popups
 
         public static var pathCache:ExternalChartCache = new ExternalChartCache();
         public static var rootFolder:File;
+        public static var lastSelectedIndex:int = 0;
 
         public static var pathList:Vector.<String>;
 
@@ -114,6 +115,7 @@ package popups
             // Song List
             songBrowser = new FileBrowserList(box, 6, 39);
             songBrowser.addEventListener(MouseEvent.CLICK, e_songListClick);
+            songBrowser.activeIndex = lastSelectedIndex;
 
             songDetails = new Sprite();
             songDetails.x = 511;
@@ -220,6 +222,10 @@ package popups
 
             // Display
             songBrowser.setRenderList(renderList);
+
+            // Set Active Item
+            if (renderList.length > 0)
+                selectedItem(songBrowser.findSongButtonByIndex(lastSelectedIndex));
         }
 
         private function dirSelected(e:Event):void
@@ -256,6 +262,9 @@ package popups
         {
             if (rootFolder == null)
                 return;
+
+            lastSelectedIndex = 0;
+            lastSelectedItem = null;
 
             pathList = new <String>[];
 
@@ -476,23 +485,31 @@ package popups
             }
         }
 
+        private function selectedItem(item:FileBrowserItem):void
+        {
+            if (item == null)
+                return;
+
+            if (lastSelectedItem != null)
+            {
+                if (lastSelectedItem == item)
+                    return;
+
+                lastSelectedItem.highlight = false;
+            }
+
+            item.highlight = true;
+            setInfoBox(item.songData);
+            lastSelectedIndex = item.index;
+            lastSelectedItem = item;
+            songBrowser.activeIndex = item.index;
+        }
+
         private function e_songListClick(e:MouseEvent):void
         {
             if (e.target is FileBrowserItem)
             {
-                var item:FileBrowserItem = e.target as FileBrowserItem;
-
-                if (lastSelectedItem != null)
-                {
-                    if (lastSelectedItem == item)
-                        return;
-
-                    lastSelectedItem.highlight = false;
-                }
-
-                item.highlight = true;
-                setInfoBox(item.songData);
-                lastSelectedItem = item;
+                selectedItem(e.target as FileBrowserItem);
             }
         }
 

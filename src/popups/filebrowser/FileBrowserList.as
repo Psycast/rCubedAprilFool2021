@@ -26,7 +26,7 @@ package popups.filebrowser
         private var _scrollY:Number = 0;
         private var _calcHeight:int = 0;
 
-        private var _selectedSongData:FileFolder;
+        public var activeIndex:int = 0;
 
         public function FileBrowserList(parent:DisplayObjectContainer = null, xpos:Number = 0, ypos:Number = 0)
         {
@@ -151,6 +151,10 @@ package popups.filebrowser
                     songButton = getSongButton();
                     songButton.index = i;
                     songButton.setData(songObject);
+
+                    if (i == activeIndex)
+                        songButton.highlight = true;
+
                     _pane.addChild(songButton);
                     moveSongButton(_y, songButton);
                     songButtons[songButtons.length] = songButton;
@@ -168,7 +172,7 @@ package popups.filebrowser
         }
 
         /**
-         * Moves the SongButton to the y value. Also marks the song button
+         * Moves the FileBrowserItem to the y value. Also marks the song button
          * as in use for the removal sweep.
          * @param _y
          * @param btn
@@ -180,11 +184,11 @@ package popups.filebrowser
         }
 
         /**
-         * Finds the on stage SongButton for the given EngineLevel.
-         * @param level EngineLevel to look for.
-         * @return If a SongButton exist already for this level.
+         * Finds the on stage SongButton for the given FileFolder.
+         * @param level FileFolder to look for.
+         * @return If a FileBrowserItem exist already for this level.
          */
-        public function findSongButton(level:Object):FileBrowserItem
+        public function findSongButton(level:FileFolder):FileBrowserItem
         {
             if (songButtons.length == 0)
                 return null;
@@ -193,6 +197,25 @@ package popups.filebrowser
             for (; len >= 0; len--)
             {
                 if (songButtons[len].songData === level)
+                    return songButtons[len];
+            }
+            return null;
+        }
+
+        /**
+         * Finds the on stage SongButton for the given FileFolder.
+         * @param level FileFolder to look for.
+         * @return If a FileBrowserItem exist already for this level.
+         */
+        public function findSongButtonByIndex(index:int):FileBrowserItem
+        {
+            if (songButtons.length == 0)
+                return null;
+
+            var len:int = songButtons.length - 1;
+            for (; len >= 0; len--)
+            {
+                if (songButtons[len].index === index)
                     return songButtons[len];
             }
             return null;
